@@ -1,9 +1,9 @@
 <template>
   <input
     type="radio"
-    :checked="modelValue === value"
-    :value="value"
-    @change="$emit('update:modelValue', value)"
+    :checked="modelValue === selectedValue"
+    :value="selectedValue"
+    @change="$emit('update:modelValue', selectedValue)"
     v-bind="$attrs"
   />
   <label v-if="label">{{ label }}</label>
@@ -21,7 +21,7 @@ export default {
       type: [String, Number],
       default: "",
     },
-    value: {
+    selectedValue: {
       type: [String, Number],
       required: true,
     },
