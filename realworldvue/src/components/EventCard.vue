@@ -1,13 +1,13 @@
 <template>
   <router-link
     class="event-link"
-    :to="{ name: 'EventDetails', params: { id: event.id } }"
+    :to="{ name: 'EventDetails', params: { id: eventabc.id } }"
   >
     <div class="event-card">
       <!-- Display event data -->
 
-      <span>@ {{ event.time }} on {{ event.date }}</span>
-      <h4>{{ event.title }}</h4>
+      <span>@ {{ eventabc.time }} on {{ eventabc.date }}</span>
+      <h4>{{ eventabc.title }}</h4>
     </div>
   </router-link>
 </template>
@@ -16,7 +16,7 @@
 export default {
   name: "EventCard",
   props: {
-    event: {
+    eventabc: {
       type: Object,
       required: true,
     },

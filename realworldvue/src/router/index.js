@@ -39,6 +39,17 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "eventdetails" */ "../views/CreateEvent.vue"),
   },
+
+  {
+    path: "/DynamicTextField",
+    name: "DynamicTextField",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "eventdetails" */ "../views/DynamicTextField.vue"),
+  },
 ];
 
 const router = createRouter({

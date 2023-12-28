@@ -2,7 +2,8 @@
   <nav>
     <router-link :to="{ name: 'EventList' }">Events</router-link> |
     <router-link :to="{ name: 'About' }">About</router-link> |
-    <router-link :to="{ name: 'CreateEvent' }">Create Event</router-link>
+    <router-link :to="{ name: 'CreateEvent' }">Create Event</router-link> |
+    <router-link :to="{ name: 'DynamicTextField' }">DynamicTextField</router-link>
   </nav>
   <router-view />
 </template>
