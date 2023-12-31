@@ -8,6 +8,7 @@
         label="Select a category"
       />
       <h3>Name & describe the event</h3>
+      <!-- here BaseInput use just single use each time input for example title, then description-->
       <BaseInput v-model="event.title" label="Title" type="text" />
       <BaseInput v-model="event.description" label="Description" type="text" />
       <h3>Where is your event?</h3>
