@@ -1,11 +1,25 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import EventList from "../views/EventList.vue";
+import NotFound from "../views/NotFound.vue";
+import PageRender from "../views/PageRender.vue";
+
+
 
 const routes = [
   {
     path: "/",
     name: "EventList",
     component: EventList,
+  },
+  {
+    path:"/404",
+    name:"/404",
+    component: NotFound,
+  },
+  {
+    path: "/:pathMatch(.*)",
+    name:'bad-not-found',
+    component: NotFound
   },
   {
     path: "/event/:id",
@@ -60,6 +74,33 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "mycount" */ "../views/MyCount.vue"),
   },
+  {
+    path: "/FormValidate",
+    name: "SubmitFormModel",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "FormValidate" */ "../views/SubmitFormModel.vue"),
+  },
+
+  {
+    path: "/PageRender",
+    name:"PageRender",
+    component: PageRender
+  },
+
+  {
+    path: "/signup",
+    name: "SignUp",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "SignUp" */ "../views/SignUp.vue"),
+  },
+  
 ];
 
 const router = createRouter({

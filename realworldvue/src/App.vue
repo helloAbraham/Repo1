@@ -217,6 +217,7 @@ textarea {
   -webkit-appearance: none;
 }
 [type="text"],
+[type="email"],
 [type="number"],
 [type="search"],
 [type="password"] {
@@ -226,6 +227,7 @@ textarea {
   font-size: 20px;
 }
 [type="text"]:focus,
+[type="email"]:focus,
 [type="number"]:focus,
 [type="search"]:focus,
 [type="password"]:focus {
