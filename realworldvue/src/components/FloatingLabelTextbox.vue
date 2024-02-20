@@ -1,7 +1,7 @@
 <template>
     <div class="body">
-        <form class="form-style" action="">
-            <h1>LOGIN</h1>
+        <form class="form-style" action="" >
+            <h2 class="input-fields">LOGIN</h2>
             <div class="input-fields">
                 <input type="email" name="" id="" placeholder="" required="true">
                 <label for="">Email</label>
@@ -10,8 +10,8 @@
                 <input type="password" name="" id="" placeholder="" required="true">
                 <label for="">Password</label>
                 <span>show</span>    
-            </div>
           <input type="submit" value="Login" name="" id="btn">
+          </div>
           <div id="forget_password">
             <i>Forgot Password?</i><span>Click here</span>
           </div>
@@ -39,7 +39,7 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     box-sizing: border-box;
 }
-.form-style{
+   .form-style{
     height: 450px;
     width: 450px;
     background-color: #fff;
@@ -53,12 +53,15 @@
 }
 .h1{
     text-align: center;
+    position: center;
+  
 }
 .input-fields{
     position: relative;
-    width: 430px;
+    width: 400px;
     height: 40px;
-    margin-top: 30px;
+    margin-top: 25px;
+    left: 20px;
 
 }
 .input-fields input{
@@ -68,10 +71,11 @@
     border: navajowhite;
     border-radius: 8px;
     padding: 5px 10px;
+    padding-left: 10px;
     font-size: 18px;
 }
 .input-fields input:focus{
-    outline: 2px solit#1f3040;
+    outline: 2px solid#2692df;
 }
 .input-fields input:focus + label {
     top: -10px;
@@ -83,7 +87,7 @@
     top: 15px;
     left: 15px;
     font-size: 18px;
-    padding: 0 15px;
+    padding: 0 5px;
     pointer-events: none;
     transition: top .2s;
     background-color: white;
@@ -97,26 +101,29 @@
 .input-fields span{
     position: absolute;
     top: 15px;
-    left: 375px;
+    left: 350px;
 }
 #btn{
-    margin-top: 30px;
+    margin-top: 25px;
+    width: 115px;
     padding: 10px 20px;
     border: none;
     color: white;
     background-color: #1f3040;
     border-radius: 8px;
-    font-size: 10px;
+    font-size: 16px;
     font-weight: bold;
     cursor: pointer;
 
 }
 #forgot_password span{
+    
     text-decoration: underline;
     cursor: pointer;
 
 }
 #forget_password {
+    padding-top: 75px;
     text-align: center;
     margin-top: 10px;
 }
