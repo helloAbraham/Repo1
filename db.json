@@ -23,6 +23,17 @@
       "organizer": "Fern Pollin"
     },
     {
+      "id": 787,
+      "category": "Community Service",
+      "title": "Learning",
+      "description": "Help people to learn Quran",
+      "location": "Elmhurst, Mosque",
+      "date": "March 22, 2022",
+      "time": "3:00",
+      "petsAllowed":false,
+      "organizer": "Youth Group"
+    },
+    {
       "id": 789,
       "category": "sustainability",
       "title": "Beach Cleanup",
