@@ -75,7 +75,7 @@ h6 {
   font-family: "Montserrat", sans-serif;
 }
 h1 {
-  font-size: 50px;
+  font-size: 35px;
   font-weight: 700;
 }
 h2 {
@@ -87,7 +87,6 @@ h3 {
   font-weight: 700;
 }
 h4 {
-  font-size: 21px;
   font-weight: 700;
 }
 h5 {
@@ -101,7 +100,8 @@ h6 {
 b,
 strong {
   font-weight: bolder;
-}
+}ont-size: 21px;
+  f
 small {
   font-size: 80%;
 }

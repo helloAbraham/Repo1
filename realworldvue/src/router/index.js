@@ -13,7 +13,7 @@ const routes = [
   },
   {
     path:"/404",
-    name:"/404",
+    name:"NotFound",
     component: NotFound,
   },
   {
@@ -119,7 +119,35 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "CustomeSelectedDate" */ "../views/CustomeSelectedDate.vue"),
   },
-  
+  {
+    path: "/lifecyclehook",
+    name: "LifecycleExample",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(/* webpackChunkName: "CustomeSelectedDate" */ "../components/LifecycleExample.vue"),
+  },
+  {
+  path: "/mountedValidation",
+  name: "ValidationComponent",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "CustomeSelectedDate" */ "../components/ValidationComponent.vue"),
+},
+
+{
+  path: "/fitraPage",
+  name: "FitraPage",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/FitraPage.vue"),
+},
+
 ];
 
 const router = createRouter({
