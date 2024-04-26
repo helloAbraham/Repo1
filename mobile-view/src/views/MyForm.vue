@@ -6,6 +6,7 @@
         <BaseInput v-model="textInput"></BaseInput>
         <BaseButton>Submit</BaseButton>
         <BaseSelect>Select the item</BaseSelect>
+        <BaseButtonStyle>StylishButton</BaseButtonStyle>
         <br />
         <br />
 

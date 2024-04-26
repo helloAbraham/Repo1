@@ -22,9 +22,12 @@
             </ButtonLink>
             <br/>
             <br/>
+            <br/>
+
             <ButtonLink url="https://archive.org/details/bangla-quran-nurani-pronunciation-and-translation/">
               Bangla-Quran
             </ButtonLink>
+            <br/>
             <br/>
             <br/>
             <ButtonLink url="https://quran.com/">
@@ -32,9 +35,11 @@
             </ButtonLink>
             <br/>
             <br/>
+            <br/>
             <ButtonLink url="https://quran.com/">
               Whats-App_Group
             </ButtonLink>
+            <br/>
             <br/>
             <br/>
             <ButtonLink url="https://abrahamparker.com">
@@ -117,7 +122,6 @@ import MarqueeStyle from '../components/MarqueeStyle.vue';
 import EventList from './EventList.vue';
 import JumaList from '../views/JumaList.vue';
 import MarqueeStyleJuma from '../components/MarqueeStyleJuma.vue';
-import ButtonLink from '../components/ButtonLink.vue';
 import UpcomingList from '../views/UpcomingList.vue';
 import PhotoGallery from '../components/PhotoGallery.vue';
 import PhotoSlideShow from '@/components/PhotoSlideShow.vue';
@@ -142,7 +146,6 @@ export default {
     EventList,
     MarqueeStyleJuma,
     JumaList,
-    ButtonLink,
     UpcomingList,
     PhotoGallery,
     PhotoSlideShow,

@@ -1,37 +1,25 @@
 <template>
-    <a :href="url" class="btn btn-2">
-      <slot></slot>
-    </a>
-  </template>
-  
-  <script>
-  export default {
-    name: 'ButtonLink',
-    props: {
-      url: {
-        type: String,
-        required: true
-      }
+    <div>
+        <button v-on="$listeners" v-bind="$attrs" class="btn btn-2" :class="buttonClass">
+            <slot/>
+        </button>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "BaseButtonStyle",
+        inheritAttrs: false,
+        props: {
+            buttonClass: {
+                type: String
+            }
+        }
+        
     }
-  };
-  </script>
-  
-  <!-- <style scoped>
-  .button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: #0be565;
-  }
-  </style> -->
-  <style scoped>
+</script>
+
+<style scoped>
 body{
   font-family: 'Montserrat', sans-serif;
   margin:0;
@@ -49,15 +37,13 @@ body{
 .btn {
   flex: 1 1 auto;
   margin: 10px;
-  padding: 10px 20px;
+  padding: 30px;
   text-align: center;
-  text-decoration:aqua;
   text-transform: uppercase;
   transition: 0.5s;
   background-size: 200% auto;
-  color: rgb(255, 255, 255);
+  color: white;
  /* text-shadow: 0px 0px 10px rgba(0,0,0,0.2);*/
-  text-shadow: #070707;
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
  }
@@ -75,7 +61,7 @@ body{
 
 
 .btn-2 {
-  background-image: linear-gradient(to right, #f298d9 0%, #a6c1ee 51%, #dc6cbc 100%);
+  background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
 }
 
 .btn-3 {
