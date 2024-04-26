@@ -4,6 +4,8 @@
         <h1>My App Input Example</h1>
        <br />
         <BaseInput v-model="textInput"></BaseInput>
+        <BaseButton>Submit</BaseButton>
+        <BaseSelect>Select the item</BaseSelect>
         <br />
         <br />
 
@@ -11,13 +13,17 @@
 </template>
 
 <script>
+
+
+
     export default {
         name:"MyForm",
         data() {
             return {
                 textInput: '',
             }
-        }
+        },
+     
         
     }
 </script>

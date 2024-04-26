@@ -27,6 +27,7 @@
         height: 52px;
         padding: 0 40px;
         background: transparent;
+        background-color: #9be83d;
         border: none;
         border-radius: 6px;
         text-align: center;

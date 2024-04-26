@@ -66,10 +66,7 @@
   </template>
   
   <script>
-  import BaseInput from "@/components/BaseInput.vue";
-  import BaseSelect from "@/components/BaseSelect.vue";
-  import BaseCheckbox from "@/components/BaseCheckbox.vue";
-  import BaseRadio from "@/components/BaseRadio.vue";
+  
   import { mapState } from 'vuex';
   export default {
     name: "SubmitFormModel",
@@ -160,10 +157,7 @@
         */
       
     components: {
-      BaseInput,
-      BaseSelect,
-      BaseCheckbox,
-      BaseRadio,
+     
     },
   };
   </script>
