@@ -1,35 +1,120 @@
 <template>
-    <div class="body">
-        <form class="form-style" action="" >
-            <h2 class="input-fields">LOGIN</h2>
-            <div class="input-fields">
-                <input type="text" name="" id="" placeholder="" required="true">
-                <label for="">User Name</label>
+  
+        <div class="body">
+            <form class="form-style" @submit.prevent="handleSubmit" action="" >
+                <h2 class="input-fields">LOGIN</h2>
+                <div class="input-fields">
+                    <input type="text" v-model="username" id="" placeholder="" required="true">
+                    <label for="">User Name</label>
+                </div>
+                <div class="input-fields">
+                    <input 
+                    :type="showPassword ? 'text' : 'password'" 
+                    v-model="password"
+                    name="" 
+                    id="password" 
+                    placeholder="" 
+                    required>
+                    <label for="">Password</label>
+                    <span @click="togglePasswordVisibility" class="toggle-password">
+                         <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+                     </span> 
+            <input type="submit" value="Login" name="" id="btn">
+            <ButtonLink @click="redirectToLogin">Cancel</ButtonLink>
             </div>
-            <div class="input-fields">
-                <input type="password" name="" id="" placeholder="" required="true">
-                <label for="">Password</label>
-                <span>show</span>    
-          <input type="submit" value="Login" name="" id="btn">
-          </div>
-          <div id="forget_password">
-            <i>Forgot Password?</i><span>Click here</span>
-          </div>
-        </form>
-</div>
+            <div id="forget_password">
+                <i>Forgot Password?</i><span>Click here</span>
+            </div>
+            </form>
+        </div>
+ 
 </template>
 
 <script>
+import axios from 'axios';
+import LoginService from '../services/LoginService';
     export default {
         name: "LoginForm",
+        props: {
+            isOpenForm: {
+                type: Boolean,
+                required: true
+            },
+            title: {
+                type: String,
+                default: 'Modal Title'
+            }
+    },
 
+        data() {
+            return {
+                username:'',
+                password: '',
+                showPassword: false,
+            }
+        },
+        created() {
+            LoginService.postEvent()
+            .then((response) => {
+            this.events = response.data;
+        })
+            .catch((error) => {
+             console.log(error);
+        });
+    },
+        // data() {
+        //     return {
+        //         isOpen: false,
+        //     }
+        // },
+
+        // methods: {
+        //     toggleModal() {
+        //         this.isOpen = !this.isOpen
+        //     }
+        // }
+
+        methods: {
+            async handleSubmit(){
+                try {
+                    const response = await axios.post('http://localhost:8090/login', {
+                        username: this.username,
+                        password: this.password
+                    });
+                    console.log('Form Submitted Successfully.', response.data);
+                    //Handle successful login (e.g. redirect to dashboard, store toke, etc)
+                    this.$router.push({ name: 'Dashboard' });
+                } catch (error) {
+                    console.error('Login failed:', error);
+                    // Handle login failure (e.g., show error message)
+                    this.$router.push({ name: 'LoginForm' });
+                }
+
+                // Clear the form by resetting the data properties
+                this.resetForm();
+            },
+            resetForm(){
+                this.username='';
+                this.password='';
+                this.showPassword=false; //Optionally reset the showPassword flag
+
+            },
+             //This is the method we can redirect user to another page or component
+            redirectToLogin(){
+                this.$router.push({ name:'Home'})
+                // <router-link class="link" :to="{name: 'Home'}">Home</router-link>
+            },
+            togglePasswordVisibility() {
+                this.showPassword = !this.showPassword;
+                }
+            }
     }
 </script>
 
 <style scoped>
 .body{
     margin: 0;
-    padding: 0;
+    padding: 0px;
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -40,8 +125,8 @@
     box-sizing: border-box;
 }
    .form-style{
-    height: 450px;
-    width: 450px;
+    height: 320px;
+    width: 440px;
     background-color: #fff;
     padding: 10px 15px;
     display: flex;
@@ -54,15 +139,14 @@
 .h1{
     text-align: center;
     position: center;
-  
 }
 .input-fields{
     position: relative;
     width: 400px;
     height: 40px;
-    margin-top: 25px;
-    left: 20px;
-
+    margin-top: 20px;
+   
+    text-align: center;
 }
 .input-fields input{
     width: 100%;
@@ -89,7 +173,7 @@
     font-size: 18px;
     padding: 0 5px;
     pointer-events: none;
-    transition: top .2s;
+    transition: top 0.5s;
     background-color: white;
     color: rgb(99,99,99);
 
@@ -114,6 +198,7 @@
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
 
 }
 #forgot_password span{
@@ -126,5 +211,8 @@
     padding-top: 75px;
     text-align: center;
     margin-top: 10px;
+}
+.toggle-password {
+cursor: pointer;
 }
 </style>

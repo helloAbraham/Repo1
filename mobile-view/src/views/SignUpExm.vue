@@ -38,7 +38,7 @@ import BaseButton from '@/components/BaseButton.vue';
 import BaseInput from '@/components/BaseInput.vue';
 
     export default {
-    name: "SignUp",
+    name: "SignUpExm",
     data() {
         return {
             user: {

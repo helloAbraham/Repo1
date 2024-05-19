@@ -65,6 +65,7 @@
     align-items: center;
     text-align: center;
     
+    
 }
 .centered-image {
   max-width: 100%; /* Ensure images don't exceed container width */

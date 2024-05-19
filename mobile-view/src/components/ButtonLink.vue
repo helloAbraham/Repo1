@@ -2,11 +2,14 @@
     <a :href="url" class="btn btn-2">
       <slot></slot>
     </a>
+
+    
   </template>
   
   <script>
   export default {
     name: 'ButtonLink',
+    inheritAttrs: false,
     props: {
       url: {
         type: String,
@@ -60,6 +63,7 @@ body{
   text-shadow: #070707;
   box-shadow: 0 0 20px #eee;
   border-radius: 10px;
+  cursor:pointer;
  }
 
 /* Demo Stuff End -> */
