@@ -9,7 +9,6 @@
   <script>
   export default {
     name: 'ButtonLink',
-    inheritAttrs: false,
     props: {
       url: {
         type: String,

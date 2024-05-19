@@ -21,7 +21,7 @@ public class RegistrationController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@CrossOrigin(origins = "http://localhost:8080") 
+	//@CrossOrigin(origins = "http://localhost:8080") 
 	@PostMapping("/register/user")
 	public MyUser createUser(@RequestBody MyUser user) {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -32,7 +32,7 @@ public class RegistrationController {
 	public String home() {
 		return "Welcome Home |^^| ";
 	}
-	@CrossOrigin(origins = "http://localhost:8080") 
+	//@CrossOrigin(origins = "http://localhost:8080") 
 	@GetMapping("/login")
 	public String handleLogin() {
 		return "custome_login";

@@ -187,20 +187,37 @@ import LoginService from '../services/LoginService';
     top: 15px;
     left: 350px;
 }
+
+
 #btn{
     margin-top: 25px;
     width: 115px;
+    text-align: center;
+    text-decoration:aqua;
+    text-transform: uppercase;
+    transition: 0.5s;
     padding: 10px 20px;
+    box-shadow: 0 0 20px #eee;
     border: none;
     color: white;
-    background-color: #1f3040;
-    border-radius: 8px;
+    background-color: #d19be9;
+    border-radius: 10px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    text-align: center;
-
 }
+
+#btn-2 {
+  background-image: linear-gradient(to right, #f298d9 0%, #a6c1ee 51%, #dc6cbc 100%);
+}
+ 
+  #btn:hover {
+    background-position: right center; /* change the direction of the change here */
+    -webkit-transform: scale(1.02);
+    transform: scale(1.02);
+    box-shadow: 0 7px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-image: linear-gradient(to right, #f298d9 0%, #a6c1ee 51%, #dc6cbc 100%);
+  }
 #forgot_password span{
     
     text-decoration: underline;

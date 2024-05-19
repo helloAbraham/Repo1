@@ -37,7 +37,7 @@ public class WebSecurityConfig {
 				//creating lambda function
 				.csrf(AbstractHttpConfigurer::disable)
 				.authorizeHttpRequests(registry -> {
-					registry.requestMatchers("/home", "/register/**").permitAll();
+					registry.requestMatchers("/home", "/register/**", "/member/adding", "/api/members/save", "/api/members/all", "/api/members/update/{id}","/api/members/delete/{id}").permitAll();
 					registry.requestMatchers("/admin/**").hasRole("ADMIN");
 					registry.requestMatchers("/user/**").hasRole("USER");
 					registry.anyRequest().authenticated();
