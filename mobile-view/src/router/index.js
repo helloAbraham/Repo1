@@ -57,6 +57,15 @@ const routes = [
   },
 
   {
+    path: '/register',
+    name: 'MemberRegister',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "register" */ '../components/MemberRegister.vue')
+  },
+
+  {
     path: '/login',
     name: 'LoginForm',
    
@@ -160,12 +169,19 @@ const routes = [
     path: "/myform",
     name: "MyForm",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "myform" */ "../views/MyForm.vue"
+      ),
+  },
+
+  {
+    path: "/dollarinput",
+    name: "CurrencyInput",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "myform" */ "../components/CurrencyInput.vue"
       ),
   }
 ]

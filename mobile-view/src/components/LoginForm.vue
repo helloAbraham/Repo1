@@ -83,6 +83,7 @@ import LoginService from '../services/LoginService';
                     });
                     console.log('Form Submitted Successfully.', response.data);
                     //Handle successful login (e.g. redirect to dashboard, store toke, etc)
+                    alert('Login Successful! You made it..');
                     this.$router.push({ name: 'Dashboard' });
                 } catch (error) {
                     console.error('Login failed:', error);

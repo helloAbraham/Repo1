@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import LoginService from '@/services/LoginService';
+
     export default {
         name: "navigation",
         data(){
@@ -50,6 +52,7 @@
         created(){
             window.addEventListener('resize', this.checkScreen);
             this.checkScreen();
+            
         },
         mounted(){
                 window.addEventListener("scroll", this.updateScroll);

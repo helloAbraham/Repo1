@@ -82,7 +82,7 @@
       <div class="hero-text container">
         <HelloWorld slogan="Islamic Center in Elmhurst" />
      
-        <h4> </h4>
+        <h4></h4>
         
         <hr />
         <h2 class="h2">
@@ -232,12 +232,13 @@ export default {
 }
 .container {
     margin-top: -10px;
-    padding-top: 20px;
+    //padding-top: 20px;
     display: grid;
     grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
     gap: 1px; /* Spacing between columns */
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: -50px;
 }
 .column {
     /* Styles for each column */
@@ -245,7 +246,7 @@ export default {
     padding: 20px;
     background-color: #f0f0f0;
     border: 1px solid #3206d1;
-    margin-bottom: 200px;
+    margin-bottom: 60px;
     height: 960px;
     
 }
@@ -273,7 +274,6 @@ export default {
 }
 .background-image-top {
   padding-top: 350px;
-  padding-bottom: 0px;
   background-image: url('../assets/lailaha.png'); /* Replace with the path to your image */
     background-size: cover; /* Cover the entire container */
     background-position: center; /* Center the image */
@@ -284,7 +284,7 @@ export default {
     position:sticky;
     background-repeat: no-repeat;
     background-size: 300px 75px;
-    margin-bottom: 5px;
+    margin-bottom: -120px;
 }
 .h4 {
   font-size: 20px;

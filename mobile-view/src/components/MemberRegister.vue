@@ -2,30 +2,39 @@
     <section id="top-padding">
         <div class="body">
         <div class="sign-up" >
-        <h2 id="h2">Sign Up</h2>
+        <h2 id="h2">Member Registration</h2>
             <form @submit.prevent="handleSubmit" action="">
                 <div class="form-group">
-                <label for="name">User Name:</label>
-                <input type="text" v-model="username" id="name" required>
-                </div>
-
-                <div class="form-group">
-                <label for="password">Password:</label>
+                <label for="firstName">First Name:</label>
+                <input type="text" v-model="firstName" id="firstName" required>
+              
+                <label for="lastName">Last Name:</label>
                 <input 
-                    :type="showPassword ? 'text' : 'password'" 
-                    v-model="password"
+                    v-model="lastName"
                     name="" 
-                    id="password" 
+                    id="lastName" 
                     placeholder="" 
                     required >
-                    <span @click="togglePasswordVisibility" class="toggle-password">
-                         <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
-                     </span> 
+               
+                <label for="address">Address:</label>
+                <input type="address" v-model="address" id="address" required>
+             
+                <label for="city">City:</label>
+                <input type="city" v-model="city" id="city" required>
+            
+                <label for="state">State:</label>
+                <input type="state" v-model="state" id="state" required>
+             
+                <label for="zipCode">Zip Code:</label>
+                <input type="zipCode" v-model="zipCode" id="zipCode" required>
+            
+                <label for="email">Email:</label>
+                <input type="email" v-model="email" id="email" required>
+             
+                <label for="phone">Phone:</label>
+                <input type="phone" v-model="phone" id="phone" required>
                 </div>
-                <div class="form-group">
-                <label for="role">Role:</label>
-                <input type="role" v-model="role" id="role" required>
-                </div>
+                
                 <div class="button-position">
                 <button class="btn btn-2" type="submit">Sign Up</button>
         
@@ -37,17 +46,21 @@
     </section>
   </template>
   
-  <script>
+<script>
 import ButtonLink from './ButtonLink.vue';
-import axios from 'axios';
-  export default {
-    name:'SignUp',
+import MemberService from '../services/MemberService';
+export default {
+    name:'MemberRegister',
     data() {
       return {
-        username: '',
-        password: '',
-        role: '',
-        showPassword: false,
+        firstName: '',
+        lastName: '',
+        address: '',
+        city:'',
+        state:'',
+        zipCode:'',
+        email:'',
+        phone:'',
       };
     },
     components: {
@@ -56,28 +69,29 @@ import axios from 'axios';
     methods: {
         async handleSubmit(){
             try {
-                const response = await axios.post('http://localhost:8090/register/user', {
-                    username: this.username,
-                    password: this.password,                        
-                    role: this.role
-                    });
+                await MemberService.register(this.firstName, this.lastName, this.address, this.city, this.state, this.zipCode, this.email, this.phone);
                     alert('Registration successful! Please login.');
-                    console.log('Form Submitted Successfully.', response.data);
+                   // console.log('Form Submitted Successfully.', response.data);
                     //Handle successful login (e.g. redirect to dashboard, store toke, etc)
                     this.$router.push({ name: 'LoginForm' });
                 } catch (error) {
-                    console.error('Sign up failed:', error);
+                    console.error('Member registration failed:', error);
                     // Handle login failure (e.g., show error message)
-                    this.$router.push({ name: 'LoginForm' });
+                    this.$router.push({ name: 'MemberRegister' });
                 }
 
                 // Clear the form by resetting the data properties
                 this.resetForm();
             },
             resetForm(){
-                this.username='';
-                this.password='';
-                this.role='';
+              this.firstName='',
+              this.lastName= '',
+              this.address= '',
+              this.city='',
+              this.state='',
+              this.zipCode='',
+              this.email='',
+              this.phone=''
             },
 
         togglePasswordVisibility() {
@@ -94,7 +108,7 @@ import axios from 'axios';
   
   <style scoped>
   #top-padding {
-    padding-top: 135px;
+    padding-top: 100px;
     background-color: #1f3040;
     }
 
@@ -122,7 +136,7 @@ import axios from 'axios';
   }
   label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
   }
   input {
     width: 100%;
