@@ -1,38 +1,39 @@
 <template>
     <section id="top-padding">
+      
         <div class="body">
         <div class="sign-up" >
         <h2 id="h2">Member Registration</h2>
-            <form @submit.prevent="handleSubmit" action="">
+            <form ref="clearformdata" @submit.prevent="handleSubmit" action="">
                 <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" v-model="firstName" id="firstName" required>
+                <input type="text" v-model="formData.firstName" id="firstName" required>
               
                 <label for="lastName">Last Name:</label>
                 <input 
-                    v-model="lastName"
+                    v-model="formData.lastName"
                     name="" 
                     id="lastName" 
                     placeholder="" 
                     required >
                
                 <label for="address">Address:</label>
-                <input type="address" v-model="address" id="address" required>
+                <input type="address" v-model="formData.address" id="address" required>
              
                 <label for="city">City:</label>
-                <input type="city" v-model="city" id="city" required>
+                <input type="city" v-model="formData.city" id="city" required>
             
                 <label for="state">State:</label>
-                <input type="state" v-model="state" id="state" required>
+                <input type="state" v-model="formData.state" id="state" required>
              
                 <label for="zipCode">Zip Code:</label>
-                <input type="zipCode" v-model="zipCode" id="zipCode" required>
+                <input type="zipCode" v-model="formData.zipCode" id="zipCode" required>
             
                 <label for="email">Email:</label>
-                <input type="email" v-model="email" id="email" required>
+                <input type="email" v-model="formData.email" id="email" required>
              
                 <label for="phone">Phone:</label>
-                <input type="phone" v-model="phone" id="phone" required>
+                <input type="phone" v-model="formData.phone" id="phone" required>
                 </div>
                 
                 <div class="button-position">
@@ -43,24 +44,27 @@
             </form>
         </div>
     </div>
+  
     </section>
   </template>
   
 <script>
 import ButtonLink from './ButtonLink.vue';
-import MemberService from '../services/MemberService';
+import myAxiosInstance from '../services/MemberService';
 export default {
     name:'MemberRegister',
     data() {
       return {
-        firstName: '',
-        lastName: '',
-        address: '',
-        city:'',
-        state:'',
-        zipCode:'',
-        email:'',
-        phone:'',
+        formData: {
+                  firstName: '',
+                  lastName: '',
+                  address: '',
+                  city:'',
+                  state:'',
+                  zipCode:'',
+                  email:'',
+                  phone:'',
+        },
       };
     },
     components: {
@@ -69,9 +73,10 @@ export default {
     methods: {
         async handleSubmit(){
             try {
-                await MemberService.register(this.firstName, this.lastName, this.address, this.city, this.state, this.zipCode, this.email, this.phone);
-                    alert('Registration successful! Please login.');
-                   // console.log('Form Submitted Successfully.', response.data);
+                const response = await myAxiosInstance.post('/save', this.formData);
+                this.response = response.data;    
+                //alert('Registration successful! Please login.');
+                   console.log('Form Submitted Successfully.', response.data);
                     //Handle successful login (e.g. redirect to dashboard, store toke, etc)
                     this.$router.push({ name: 'LoginForm' });
                 } catch (error) {
@@ -81,7 +86,10 @@ export default {
                 }
 
                 // Clear the form by resetting the data properties
-                this.resetForm();
+                //this.resetForm();
+                //No need above method
+                //We can user ref
+                this.$refs.clearformdata.reset();
             },
             resetForm(){
               this.firstName='',
@@ -107,13 +115,13 @@ export default {
   </script>
   
   <style scoped>
+  @import '~nprogress/nprogress.css';
   #top-padding {
     padding-top: 100px;
     background-color: #1f3040;
     }
 
 .body{
-   
     padding-top: 0px;
     width: 100vw;
     height: 100vh;
@@ -121,6 +129,15 @@ export default {
     align-items: center;
     background-color: #1f3040;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.body-enter {
+    opacity: 0;
+}
+.body-enter-active, .body-leave-to {
+    transition: opacity 0.5s ease-out;
+}
+.body-leave-to {
+    opacity: 0;
 }
   .sign-up {
  
@@ -191,5 +208,5 @@ export default {
 .pading-button {
     padding-top: 25px;
 }
-  </style>
+</style>
   

@@ -1,15 +1,18 @@
 package com.websecure.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import com.websecure.entity.MyUser;
 import com.websecure.repository.MyUserRepository;
+
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8080")
@@ -18,6 +21,7 @@ public class RegistrationController {
 	@Autowired
 	private MyUserRepository myUserRepository;
 	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
@@ -32,10 +36,22 @@ public class RegistrationController {
 	public String home() {
 		return "Welcome Home |^^| ";
 	}
-	//@CrossOrigin(origins = "http://localhost:8080") 
-	@GetMapping("/login")
-	public String handleLogin() {
-		return "custome_login";
-	}
+//	@CrossOrigin(origins = "http://localhost:8080") 
+//	@GetMapping("/login")
+//	public String handleLogin() {
+//		return "custome_login";
+//	}
+	
+//	@PostMapping("/login")
+//	@CrossOrigin(origins = "http://localhost:8080") 
+//	public ResponseEntity<String> login(@RequestParam String username, @RequestParam String password) {
+//		boolean isAuthenticated = myUserService.authenticate(username, password);
+//		if(isAuthenticated) {
+//			return ResponseEntity.ok("Login Successful");
+//		} else {
+//			return ResponseEntity.status(401).body("Invalid credentials");
+//		}
+//	}
+	
 
 }

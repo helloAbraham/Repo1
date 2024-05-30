@@ -11,5 +11,6 @@ import com.websecure.entity.MyUser;
 public interface MyUserRepository extends JpaRepository<MyUser, Long>{
 	
 	Optional<MyUser> findByUsername(String username);
+	//MyUser findByUsername(String username);
 
 }

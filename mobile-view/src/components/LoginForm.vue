@@ -1,7 +1,8 @@
 <template>
   
         <div class="body">
-            <form class="form-style" @submit.prevent="handleSubmit" action="" >
+            <transition name="fade">
+            <form v-if="showForm" class="form-style" @submit.prevent="handleSubmit" action="" >
                 <h2 class="input-fields">LOGIN</h2>
                 <div class="input-fields">
                     <input type="text" v-model="username" id="" placeholder="" required="true">
@@ -20,12 +21,18 @@
                          <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
                      </span> 
             <input type="submit" value="Login" name="" id="btn">
-            <ButtonLink @click="redirectToLogin">Cancel</ButtonLink>
+           <ButtonLink @click="redirectToLogin">Cancel</ButtonLink>
             </div>
             <div id="forget_password">
                 <i>Forgot Password?</i><span>Click here</span>
             </div>
             </form>
+            </transition>
+            <transition name="fade">
+      <div v-if="showSuccessMessage" class="success-message" key="success">
+        Form submitted successfully!
+      </div>
+    </transition>
         </div>
  
 </template>
@@ -48,6 +55,8 @@ import LoginService from '../services/LoginService';
 
         data() {
             return {
+                showForm: true,
+                showSuccessMessage: false,
                 username:'',
                 password: '',
                 showPassword: false,
@@ -76,6 +85,11 @@ import LoginService from '../services/LoginService';
 
         methods: {
             async handleSubmit(){
+                // this.showForm = false;
+                // this.showSuccessMessage = true;
+                // setTimeout(() => {
+                // this.resetForm();
+                // }, 3000); // Optional: Reset the form after 3 seconds
                 try {
                     const response = await axios.post('http://localhost:8090/login', {
                         username: this.username,
@@ -98,7 +112,8 @@ import LoginService from '../services/LoginService';
                 this.username='';
                 this.password='';
                 this.showPassword=false; //Optionally reset the showPassword flag
-
+                this.showSuccessMessage = false;
+                this.showForm = true;
             },
              //This is the method we can redirect user to another page or component
             redirectToLogin(){
@@ -113,6 +128,7 @@ import LoginService from '../services/LoginService';
 </script>
 
 <style scoped>
+@import '~nprogress/nprogress.css';
 .body{
     margin: 0;
     padding: 0px;
@@ -232,5 +248,20 @@ import LoginService from '../services/LoginService';
 }
 .toggle-password {
 cursor: pointer;
+}
+
+.fade-enter {
+    opacity: 0;
+}
+.fade-enter-active, .fade-leave-to {
+    transition: opacity 0.7s ease-out;
+}
+.fade-leave-to {
+    opacity: 0;
+}
+
+.success-message {
+  font-size: 1.2em;
+  color: green;
 }
 </style>
