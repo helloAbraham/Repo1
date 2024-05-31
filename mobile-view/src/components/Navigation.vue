@@ -13,7 +13,10 @@
         <li><router-link class="link" :to="{name: ''}">Latest News</router-link></li>
         <li><router-link class="link" :to="{name: 'PrayerTimes'}">Prayer Time</router-link></li>
         <li><router-link class="link" :to="{name: 'About'}">About Us</router-link></li>
-        <li><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
+        
+        <li v-if="!loggedIn" @click="login"><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
+        <li v-else="loogedIn" @click="login"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li>
+        
         <li><router-link class="link" :to="{name: ''}">Contact</router-link></li>        
     </ul>
     <div class="icon">
@@ -37,15 +40,23 @@
 
 <script>
 import LoginService from '@/services/LoginService';
-
+import axios from 'axios';
     export default {
         name: "navigation",
+        props: {
+            childMethod: {
+                type: Function,
+                required: true
+            }
+        },
         data(){
             return {
                 scrolledNav: null,
                 mobile: null,
                 mobileNav: null,
                 windowWidth: null,
+
+                loggedIn: false,
                 
             };
         },
@@ -78,6 +89,25 @@ import LoginService from '@/services/LoginService';
                 this.mobile = false;
                 this.mobileNav = false;
             },
+            executeParentMethod() {
+                this.childMethod();
+            },
+            login() {
+                this.loggedIn = true;
+            },
+
+            logout() {
+                this.isLoggedIn = false;
+                axios.post('http://localhost:8090/api/auth/logout')
+                 .then(response => {
+               // Redirect to the home page or perform any other action
+               this.$router.push('/')
+               
+          })
+          .catch(error => {
+            console.error('Logout failed:', error);
+          });
+      }
 
         }
     }

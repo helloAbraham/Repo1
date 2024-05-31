@@ -31,15 +31,17 @@
             <transition name="fade">
       <div v-if="showSuccessMessage" class="success-message" key="success">
         Form submitted successfully!
-      </div>
-    </transition>
         </div>
+         </transition>
+        </div>
+
  
 </template>
 
 <script>
 import axios from 'axios';
 import LoginService from '../services/LoginService';
+import navigation from '../components/Navigation.vue';
     export default {
         name: "LoginForm",
         props: {
@@ -62,15 +64,20 @@ import LoginService from '../services/LoginService';
                 showPassword: false,
             }
         },
-        created() {
-            LoginService.postEvent()
-            .then((response) => {
-            this.events = response.data;
-        })
-            .catch((error) => {
-             console.log(error);
-        });
+    //     created() {
+    //         LoginService.postEvent()
+    //         .then((response) => {
+    //         this.events = response.data;
+    //     })
+    //         .catch((error) => {
+    //          console.log(error);
+    //     });
+    // },
+    components: {
+        navigation,
     },
+
+
         // data() {
         //     return {
         //         isOpen: false,
@@ -91,7 +98,7 @@ import LoginService from '../services/LoginService';
                 // this.resetForm();
                 // }, 3000); // Optional: Reset the form after 3 seconds
                 try {
-                    const response = await axios.post('http://localhost:8090/login', {
+                    const response = await axios.post('http://localhost:8090/api/auth/login', {
                         username: this.username,
                         password: this.password
                     });
@@ -107,6 +114,7 @@ import LoginService from '../services/LoginService';
 
                 // Clear the form by resetting the data properties
                 this.resetForm();
+                
             },
             resetForm(){
                 this.username='';

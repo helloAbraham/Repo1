@@ -60,7 +60,12 @@ public class SecurityConfig {
 					formLogin.loginPage("/login")
 					.permitAll()
 					)
-			.logout(logo -> logo.permitAll()
+			.logout(logo -> 
+			logo.logoutUrl("/api/auth/logout")
+			.logoutSuccessUrl("/")
+			.invalidateHttpSession(true)
+			.deleteCookies("JSESSIONID")
+			.permitAll()
 			);
 		return http.build();
 			

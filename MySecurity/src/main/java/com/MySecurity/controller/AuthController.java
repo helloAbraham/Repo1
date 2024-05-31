@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,7 +23,7 @@ import com.MySecurity.service.MyUserService;
 
 @Configuration
 @RestController
-@CrossOrigin()
+@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -51,7 +52,10 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody UserLoginDTO userLoginDTO) throws Exception {
 		authService.authenticateUser(userLoginDTO.getUsername(), userLoginDTO.getPassword());
-		return ResponseEntity.ok("Welcme! User logged in successfully");
+		System.out.println("Login Success, " + userLoginDTO.getUsername());
+		return ResponseEntity.status(HttpStatus.OK).body("Welcme! User logged in successfully");
+		
+		//return new ResponseEntity<>("Welcme! User logged in successfully", HttpStatus.OK);
 	}
 	
 	

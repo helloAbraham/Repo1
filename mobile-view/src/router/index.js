@@ -74,6 +74,17 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "threecol" */ '../components/LoginForm.vue')
   },
+
+  {
+    path: '/logout',
+    name: 'LogoutComponent',
+   
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "LogoutComponent" */ '../components/LogoutComponent.vue')
+  },
+
   {
     path: '/eventlist',
     name: 'EventList',
@@ -138,6 +149,7 @@ const routes = [
       import(
         /* webpackChunkName: "dashborad" */ "../views/Dashboard.vue"
       ),
+      meta: { requiresAuth: true } 
   },
   {
     path: "/praytime",
@@ -183,7 +195,18 @@ const routes = [
       import(
         /* webpackChunkName: "myform" */ "../components/CurrencyInput.vue"
       ),
+  },
+
+  {
+    path: "/condButton",
+    name: "ConditionalButtonShow",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "ConditionalButtonShow" */ "../components/ConditionalButtonShow.vue"
+      ),
   }
+
 ]
 
 const router = createRouter({

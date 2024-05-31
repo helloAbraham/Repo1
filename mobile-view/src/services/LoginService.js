@@ -3,7 +3,7 @@ import NProgress from 'nprogress';
 
 //This is called Single Axios Instance for our app
 const apiClient = axios.create({
-  baseURL: "http://localhost:8090",
+  baseURL: "http://localhost:8090/api/auth",
   withCredentials: false,
   headers: {
     "Access-Control-Allow-Origin": "*",

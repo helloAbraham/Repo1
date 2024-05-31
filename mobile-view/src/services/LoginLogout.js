@@ -1,7 +1,7 @@
 import axios from "axios";
 import NProgress from 'nprogress';
 
-const BASE_URL = 'http://localhost:8090'
+const BASE_URL = 'http://localhost:8090/api/auth'
 
 const register = async (username, password, role ) => {
   try {
