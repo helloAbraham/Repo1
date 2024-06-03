@@ -1,3 +1,4 @@
+
 <template>
   
         <div class="body">
@@ -33,15 +34,17 @@
         Form submitted successfully!
         </div>
          </transition>
-        </div>
 
- 
+        </div>
+       
 </template>
 
 <script>
+
 import axios from 'axios';
 import LoginService from '../services/LoginService';
 import navigation from '../components/Navigation.vue';
+import VueAxios from 'vue-axios';
     export default {
         name: "LoginForm",
         props: {
@@ -52,7 +55,7 @@ import navigation from '../components/Navigation.vue';
             title: {
                 type: String,
                 default: 'Modal Title'
-            }
+            },
     },
 
         data() {
@@ -62,6 +65,7 @@ import navigation from '../components/Navigation.vue';
                 username:'',
                 password: '',
                 showPassword: false,
+                isLoggedIn: false,
             }
         },
     //     created() {
@@ -76,8 +80,6 @@ import navigation from '../components/Navigation.vue';
     components: {
         navigation,
     },
-
-
         // data() {
         //     return {
         //         isOpen: false,
@@ -89,8 +91,11 @@ import navigation from '../components/Navigation.vue';
         //         this.isOpen = !this.isOpen
         //     }
         // }
-
+        computed: {
+          
+        },
         methods: {
+            
             async handleSubmit(){
                 // this.showForm = false;
                 // this.showSuccessMessage = true;
@@ -103,18 +108,24 @@ import navigation from '../components/Navigation.vue';
                         password: this.password
                     });
                     console.log('Form Submitted Successfully.', response.data);
-                    //Handle successful login (e.g. redirect to dashboard, store toke, etc)
+                    //Handle successful login (e.g. redirect to dashboard, store token, etc)
                     alert('Login Successful! You made it..');
                     this.$router.push({ name: 'Dashboard' });
+                   this.showSuccessMessage = true;
+                    //If successful login so that logout icon and page will show on navbar
+                    this.$store.state.isLoggedIn = true;
+                  
                 } catch (error) {
                     console.error('Login failed:', error);
                     // Handle login failure (e.g., show error message)
                     this.$router.push({ name: 'LoginForm' });
+                    alert('Login Error');
+                    this.showSuccessMessage ='An error occurred while logging in';
                 }
-
+                  
                 // Clear the form by resetting the data properties
                 this.resetForm();
-                
+
             },
             resetForm(){
                 this.username='';
@@ -125,8 +136,10 @@ import navigation from '../components/Navigation.vue';
             },
              //This is the method we can redirect user to another page or component
             redirectToLogin(){
+                
                 this.$router.push({ name:'Home'})
-                // <router-link class="link" :to="{name: 'Home'}">Home</router-link>
+                
+               // this.$emit('updateActive', !this.isActive);
             },
             togglePasswordVisibility() {
                 this.showPassword = !this.showPassword;
@@ -212,7 +225,6 @@ import navigation from '../components/Navigation.vue';
     top: 15px;
     left: 350px;
 }
-
 
 #btn{
     margin-top: 25px;

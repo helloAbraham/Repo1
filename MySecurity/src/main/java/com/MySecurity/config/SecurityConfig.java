@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -51,25 +52,30 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager auth) throws Exception {
 		http
 			.csrf(AbstractHttpConfigurer::disable)
+			.sessionManagement(ss -> ss.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1).maxSessionsPreventsLogin(true))
 			.authorizeHttpRequests(authorizeRequests -> 
 				authorizeRequests
-				.requestMatchers("/registration", "/api/auth/register").permitAll()
+				.requestMatchers("/registration", "/api/auth/register", "/api/auth/login", "/api/auth/login/print").permitAll()
+				.requestMatchers("/regis", "/api/auth/login/jdk","/dashboard").denyAll()
 				.anyRequest().permitAll()
 			)
 			.formLogin(formLogin -> 
 					formLogin.loginPage("/login")
+					.successForwardUrl("/api/auth/login/idk")
+					.defaultSuccessUrl("/dashboard", true)
+					.failureUrl("/login?error=true")
 					.permitAll()
 					)
 			.logout(logo -> 
-			logo.logoutUrl("/api/auth/logout")
-			.logoutSuccessUrl("/")
-			.invalidateHttpSession(true)
-			.deleteCookies("JSESSIONID")
-			.permitAll()
+					logo.logoutUrl("/api/auth/logout")
+						.logoutSuccessUrl("/")
+						.invalidateHttpSession(true)
+						.deleteCookies("JSESSIONID")
+						.permitAll()
 			);
 		return http.build();
-			
-	}
 	
+		//.successForwardUrl("/api/auth/login/idk")
+	}
 	
 }

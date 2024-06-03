@@ -23,6 +23,7 @@
           .then(() => {
             // Redirect to the home page or perform any other action
             window.location.href = '/';
+            localStorage.clear();
           })
           .catch(error => {
             console.error('Logout failed:', error);

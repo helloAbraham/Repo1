@@ -17,10 +17,10 @@ public class LoginController {
 		return "login";
 	}
 	
-//	@GetMapping("/login/after")
-//	public String loginAfter() {
-//		return "SecretFile";
-//	}
+	@GetMapping("/dashboard")
+	public String loginAfter() {
+		return "SecretFile";
+	}
 	
 	
 

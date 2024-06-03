@@ -14,8 +14,13 @@
         <li><router-link class="link" :to="{name: 'PrayerTimes'}">Prayer Time</router-link></li>
         <li><router-link class="link" :to="{name: 'About'}">About Us</router-link></li>
         
-        <li v-if="!loggedIn" @click="login"><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
-        <li v-else="loogedIn" @click="login"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li>
+        <!-- <li v-if="!loggedIn" @click="login"><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
+        <li v-else="loogedIn" @click="login"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li> -->
+        <li v-if="isLoggedIn"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li> 
+        <!-- <li v-if="isLoggedIn"><button @click="logout">Logout</button></li> -->
+        <li v-else><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
+        
+    
         
         <li><router-link class="link" :to="{name: ''}">Contact</router-link></li>        
     </ul>
@@ -39,39 +44,46 @@
 </template>
 
 <script>
-import LoginService from '@/services/LoginService';
 import axios from 'axios';
+import LoginForm from './LoginForm.vue';
+
     export default {
-        name: "navigation",
-        props: {
-            childMethod: {
-                type: Function,
-                required: true
-            }
-        },
+        name: "Navigation",
+        props: ['isLoggeIn'],
         data(){
             return {
                 scrolledNav: null,
                 mobile: null,
                 mobileNav: null,
                 windowWidth: null,
-
                 loggedIn: false,
+                isLoggedIn: false, //Control the authentication status
+
                 
             };
+        },
+        components: {
+            LoginForm,
         },
         created(){
             window.addEventListener('resize', this.checkScreen);
             this.checkScreen();
-            
+         
         },
         mounted(){
                 window.addEventListener("scroll", this.updateScroll);
             },
+
+        computed: {
+            isLoggedIn() {
+                return this.$store.state.isLoggedIn;
+            }
+        },
         methods: {
             toggleMobileNav(){
                 this.mobileNav = !this.mobileNav;
             },
+
             updateScroll(){
                 const scrollPosition = window.scrollY;
                 if(scrollPosition >50){
@@ -92,22 +104,24 @@ import axios from 'axios';
             executeParentMethod() {
                 this.childMethod();
             },
-            login() {
-                this.loggedIn = true;
-            },
+            // login() {
+            //     this.loggedIn = true;
+            // },
 
             logout() {
-                this.isLoggedIn = false;
+                // this.isLoggedIn = false;
+                this.$store.commit('logout');
                 axios.post('http://localhost:8090/api/auth/logout')
                  .then(response => {
                // Redirect to the home page or perform any other action
-               this.$router.push('/')
                
+               this.$router.push('/')
+            
           })
           .catch(error => {
             console.error('Logout failed:', error);
           });
-      }
+        },
 
         }
     }

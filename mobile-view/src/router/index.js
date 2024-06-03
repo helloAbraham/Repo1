@@ -3,6 +3,9 @@ import HomeView from '../views/HomeView.vue';
 import NotFound from '@/views/NotFound.vue';
 import EventList from '../views/EventList.vue';
 
+
+import store from '@/store';
+
 const routes = [
   {
     path: '/',
@@ -117,9 +120,6 @@ const routes = [
     path: "/jumaevent/:id",
     name: "JumaEventDetails",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "eventdetails" */ "../views/JumaEventDetails.vue"
@@ -130,9 +130,6 @@ const routes = [
     path: "/upevent/:id",
     name: "UpcomingEventDetails",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "eventdetails" */ "../views/UpcomingEventDetails.vue"
@@ -149,15 +146,12 @@ const routes = [
       import(
         /* webpackChunkName: "dashborad" */ "../views/Dashboard.vue"
       ),
-      meta: { requiresAuth: true } 
+      //meta: { requiresAuth: true } 
   },
   {
     path: "/praytime",
     name: "PrayerTimes",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "eventdetails" */ "../views/PrayerTimes.vue"
@@ -168,9 +162,6 @@ const routes = [
     path: "/photoSlide",
     name: "PhotoSlidesShow",
     props: true,
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
         /* webpackChunkName: "photoslide" */ "../components/PhotoSlideShow.vue"
@@ -212,6 +203,32 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+});
+
+
+router.beforeEach((to, from, next) => {
+  if(to.matched.some(record => record.meta.requiresAuth)){
+    //If the route requires authentication
+      if(!isAuthenticated()) {
+        //if not authenticated
+        store.dispatch('setIntededRoute', to.fullPath); //save intended route
+        next('/login'); //Redirect to  login page
+
+      } else {
+        next(); //Continue to login page
+      }
+  } else {
+    next(); // Continue to the route
+  }
+})
+
+// Example route guard in Vue Router
+router.beforeEach((to, from, next) => {
+  if (to.meta.requiresAuth && !isLoggedIn()) {
+    next('/login');
+  } else {
+    next();
+  }
 });
 
 export default router;

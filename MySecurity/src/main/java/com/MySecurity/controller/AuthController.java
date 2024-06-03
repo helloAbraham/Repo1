@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,12 +53,29 @@ public class AuthController {
 	@PostMapping("/login")
 	public ResponseEntity<?> authenticateUser(@RequestBody UserLoginDTO userLoginDTO) throws Exception {
 		authService.authenticateUser(userLoginDTO.getUsername(), userLoginDTO.getPassword());
-		System.out.println("Login Success, " + userLoginDTO.getUsername());
-		return ResponseEntity.status(HttpStatus.OK).body("Welcme! User logged in successfully");
+//		System.out.println("Login Success, " + userLoginDTO.getUsername());
+		return ResponseEntity.ok("Welcme! User logged in successfully");
 		
 		//return new ResponseEntity<>("Welcme! User logged in successfully", HttpStatus.OK);
 	}
 	
+	
+	
+	//PostMapping trying to get System.out.println output
+	//In order to get message postman you have to type "What??? something "
+	 @PostMapping("/login/print")
+	    public ResponseEntity<String> printMessage(@RequestBody String request) {
+	        System.out.println("Yes");  // Print to console
+	        return ResponseEntity.ok("Message printed to console");  // Return a ResponseEntity
+	    }
+	
+	
+	
+	//restricted url
+	@GetMapping("/login/idk")
+	public String idkInfo() {
+		return "You are here becuase you logged in successfully! ";
+	}
 	
 	  @Bean
 	    public PasswordEncoder bCryptPasswordEncoder() {

@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import Vuex, { createStore } from 'vuex'
 import 'nprogress/nprogress.css'
 import BaseInput from './components/BaseInput.vue';
 import BaseButton from './components/BaseButton.vue'
@@ -10,6 +11,7 @@ import BaseCheckBox from './components/BaseCheckBox.vue';
 import BaseButtonStyle from './components/BaseButtonStyle.vue';
 import ButtonLink from './components/ButtonLink.vue';
 import Vuelidate from 'vuelidate';
+import store from './store'
 
 
 
@@ -23,6 +25,7 @@ createApp(App)
 .component('BaseSelect', BaseSelect)
 .component('BaseRadio', BaseRadio)
 .component('BaseCheckBox', BaseCheckBox)
+.use(store)
 .use(router)
 .use(Vuelidate)
 .mount('#app')
