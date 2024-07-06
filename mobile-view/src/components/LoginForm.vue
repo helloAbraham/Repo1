@@ -6,7 +6,7 @@
             <form v-if="showForm" class="form-style" @submit.prevent="handleSubmit" action="" >
                 <h2 class="input-fields">LOGIN</h2>
                 <div class="input-fields">
-                    <input type="text" v-model="username" id="" placeholder="" required="true">
+                    <input type="text" v-model="username" id="username" placeholder="" required="true">
                     <label for="">User Name</label>
                 </div>
                 <div class="input-fields">
@@ -66,6 +66,10 @@ import VueAxios from 'vue-axios';
                 password: '',
                 showPassword: false,
                 isLoggedIn: false,
+                // credentials: {
+                //     username:'',
+                //     password:''
+                // },
             }
         },
     //     created() {
@@ -95,6 +99,24 @@ import VueAxios from 'vue-axios';
           
         },
         methods: {
+
+            //simple method login()
+            login() {
+                axios.post('http://localhost:8090/api/auth/login', {
+                    username: this.username,
+                    password: this.password
+                })
+                
+                .then(({ data }) => {
+                    //handle the response data
+                    console.log(data);
+                })
+                .catch( error => {
+                    //handle the error
+                    console.log(error);
+                });
+                this.$router.push({ name: 'Dashboard' });
+            },
             
             async handleSubmit(){
                 // this.showForm = false;
@@ -103,20 +125,24 @@ import VueAxios from 'vue-axios';
                 // this.resetForm();
                 // }, 3000); // Optional: Reset the form after 3 seconds
                 try {
+                    
                     const response = await axios.post('http://localhost:8090/api/auth/login', {
                         username: this.username,
                         password: this.password
-                    });
-                    console.log('Form Submitted Successfully.', response.data);
+                    })
+                    .then(function (response) {
+                        console.log('Response ', response)
+                    })
+                    // console.log('Form Submitted Successfully.', response.data);
                     //Handle successful login (e.g. redirect to dashboard, store token, etc)
                     alert('Login Successful! You made it..');
                     this.$router.push({ name: 'Dashboard' });
-                   this.showSuccessMessage = true;
+                    this.showSuccessMessage = true;
                     //If successful login so that logout icon and page will show on navbar
                     this.$store.state.isLoggedIn = true;
                   
                 } catch (error) {
-                    console.error('Login failed:', error);
+                    console.log('Login failed:', error);
                     // Handle login failure (e.g., show error message)
                     this.$router.push({ name: 'LoginForm' });
                     alert('Login Error');
@@ -141,9 +167,19 @@ import VueAxios from 'vue-axios';
                 
                // this.$emit('updateActive', !this.isActive);
             },
-            togglePasswordVisibility() {
-                this.showPassword = !this.showPassword;
-                }
+                togglePasswordVisibility() {
+                    this.showPassword = !this.showPassword;
+                },
+            
+                /**
+                 async login() {
+                try {
+                    const response = await api.login(this.credentials);
+                    this.message = response.data;
+                } catch (error) {
+                    this.message = 'Login failed';
+                    }
+                }    */
             }
     }
 </script>

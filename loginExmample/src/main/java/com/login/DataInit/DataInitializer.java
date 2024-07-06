@@ -7,26 +7,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
-import com.login.Entity.MyUser;
-import com.login.Repository.MyUserRepository;
+
 
 @Component
 @Configuration
 public class DataInitializer {
 	
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+//	
 	
-	
-	@Bean
-	CommandLineRunner init(MyUserRepository myUserRepo) {
-		return args -> {
-			//Create a test user
-			MyUser user = new MyUser();
-			user.setUsername("Parker123");
-			user.setPassword(passwordEncoder.encode("Parker456"));
-			myUserRepo.save(user);
-		};
-	}
+//	@Bean
+//	CommandLineRunner init(MyUserRepository myUserRepo) {
+//		return args -> {
+//			//Create a test user
+//			MyUser user = new MyUser();
+//			user.setUsername("Parker123");
+//			user.setPassword(passwordEncoder.encode("Parker456"));
+//			myUserRepo.save(user);
+//		};
+//	}
 
 }

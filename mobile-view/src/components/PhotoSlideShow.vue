@@ -10,7 +10,6 @@
         </TransitionGroup>
         
            
-        
 
     </div>
 </template>
@@ -28,7 +27,7 @@
                 currentIndex: 0,
             }
         },
-
+    
         computed: {
             currentImages() {
                 return this.images[this.currentIndex];

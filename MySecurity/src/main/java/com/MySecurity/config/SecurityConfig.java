@@ -15,7 +15,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.MySecurity.service.CustomeUserDetailsService;
+import com.MySecurity.service.CustomUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -23,23 +23,14 @@ import com.MySecurity.service.CustomeUserDetailsService;
 public class SecurityConfig {
 	
 	@Autowired
-	private CustomeUserDetailsService myUserDetailsService;
+	private CustomUserDetailsService myUserDetailsService;
 	
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	
-//	@Bean
-//	public AuthenticationManagerBuilder authenticationManager(HttpSecurity http) throws Exception {
-//		return http.getSharedObject(AuthenticationManagerBuilder.class);
-//	}
-	
-	
-//	public void confgure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
-//	}
+
 	
 	//new 
 	 @Bean
@@ -52,17 +43,19 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http, AuthenticationManager auth) throws Exception {
 		http
 			.csrf(AbstractHttpConfigurer::disable)
-			.sessionManagement(ss -> ss.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED).maximumSessions(1).maxSessionsPreventsLogin(true))
+			.sessionManagement(ss -> ss.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 			.authorizeHttpRequests(authorizeRequests -> 
 				authorizeRequests
-				.requestMatchers("/registration", "/api/auth/register", "/api/auth/login", "/api/auth/login/print").permitAll()
-				.requestMatchers("/regis", "/api/auth/login/jdk","/dashboard").denyAll()
+				.requestMatchers("/static**", "/registration", "/api/auth/register", "/api/auth/login", "/api/auth/login/print").permitAll()
+				.requestMatchers("/regis", "/api/auth/**","/dashboard").authenticated()
 				.anyRequest().permitAll()
 			)
 			.formLogin(formLogin -> 
 					formLogin.loginPage("/login")
-					.successForwardUrl("/api/auth/login/idk")
-					.defaultSuccessUrl("/dashboard", true)
+//					.usernameParameter("username")
+//					.passwordParameter("password")
+					.successForwardUrl("/")
+					.defaultSuccessUrl("/", true)
 					.failureUrl("/login?error=true")
 					.permitAll()
 					)

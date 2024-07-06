@@ -10,7 +10,7 @@ import com.MySecurity.entity.MyUser;
 import com.MySecurity.repository.MyUserRepository;
 
 @Service
-public class CustomeUserDetailsService implements UserDetailsService {
+public class CustomUserDetailsService implements UserDetailsService {
 
 		@Autowired
 		private MyUserRepository myUserRepo;

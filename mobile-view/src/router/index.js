@@ -79,6 +79,16 @@ const routes = [
   },
 
   {
+    path: '/mylogin',
+    name: 'MyLoginForm',
+   
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "threecol" */ '../components/MyLoginForm.vue')
+  },
+
+  {
     path: '/logout',
     name: 'LogoutComponent',
    
@@ -195,6 +205,16 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "ConditionalButtonShow" */ "../components/ConditionalButtonShow.vue"
+      ),
+  },
+
+  {
+    path: "/colorPage",
+    name: "SurveyQues",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SurveyQues" */ "../components/SurveyQues.vue"
       ),
   }
 

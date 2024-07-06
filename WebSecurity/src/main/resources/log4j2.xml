@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="INFO">
+	
+	<Properties>
+        <Property name="log4j2.enableJndiJdbc">true</Property>
+    </Properties>
+    
     <Appenders>
         <Jdbc name="databaseAppender" tableName="logs">
             <DataSource jndiName="java:/comp/env/jdbc/myDataSource" />
@@ -9,6 +14,7 @@
             <Column name="message" pattern="%message" />
         </Jdbc>
     </Appenders>
+    
     <Loggers>
         <Root level="info">
             <AppenderRef ref="databaseAppender"/>

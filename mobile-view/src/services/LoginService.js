@@ -9,7 +9,7 @@ const apiClient = axios.create({
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-    Accept: "application/json",
+     Accepts: "application/json",
     "Content-Type": "application/json",
   },
 });
@@ -48,5 +48,12 @@ export default {
 
   postEvent(event){
     return apiClient.post('/login', event);
+  },
+
+  register(user) {
+    return apiClient.post('/register', user);
+  },
+  login(credentials) {
+    return apiClient.post('/login', credentials);
   }
 };

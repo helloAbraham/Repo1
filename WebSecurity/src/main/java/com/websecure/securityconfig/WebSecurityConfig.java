@@ -65,6 +65,10 @@ public class WebSecurityConfig {
 		return provider;
 	}
 	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 	
 	/**
 	 //this below one I learn from Spring Security Documentation using thymleaf
@@ -98,10 +102,7 @@ public class WebSecurityConfig {
 	}
 	*/
 	
-	@Bean
-	public PasswordEncoder passwordEncoder() {
-		return new BCryptPasswordEncoder();
-	}
+	
 	
 	
 }

@@ -1,7 +1,11 @@
 package com.MySecurity.dto;
 
-public class UserLoginDTO {
+import java.io.Serializable;
 
+public class UserLoginDTO implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	
 	private String username;
 	private String password;
 
