@@ -12,16 +12,18 @@ public class StudentInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String studentName;
+    private String studentFirstName;
+    private String studentLastName;
     private String email;
     private String password;
 
     public StudentInfo() {
     }
 
-    public StudentInfo(Long id, String studentName, String email, String password) {
+    public StudentInfo(Long id, String studentFirstName, String studentLastName, String email, String password) {
         this.id = id;
-        this.studentName = studentName;
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentLastName;
         this.email = email;
         this.password = password;
     }
@@ -34,12 +36,20 @@ public class StudentInfo {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getStudentFirstName() {
+        return studentFirstName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
     public String getEmail() {
@@ -62,7 +72,8 @@ public class StudentInfo {
     public String toString() {
         return "StudentInfo{" +
                 "id=" + id +
-                ", studentName='" + studentName + '\'' +
+                ", studentFirstName='" + studentFirstName + '\'' +
+                ", studentLastName='" + studentLastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

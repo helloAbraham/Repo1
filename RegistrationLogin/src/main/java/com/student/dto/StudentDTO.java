@@ -3,7 +3,8 @@ package com.student.dto;
 public class StudentDTO {
 
     private Long id;
-    private String studentName;
+    private String studentFirstName;
+    private String studentLastName;
     private String email;
     private String password;
 
@@ -11,9 +12,10 @@ public class StudentDTO {
     public StudentDTO() {
     }
 
-    public StudentDTO(Long id, String studentName, String email, String password) {
+    public StudentDTO(Long id, String studentFirstName, String studentLastName, String email, String password) {
         this.id = id;
-        this.studentName = studentName;
+        this.studentFirstName = studentFirstName;
+        this.studentLastName = studentFirstName;
         this.email = email;
         this.password = password;
     }
@@ -26,12 +28,20 @@ public class StudentDTO {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
+    public String getStudentFirstName() {
+        return studentFirstName;
     }
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
+    public void setStudentFirstName(String studentFirstName) {
+        this.studentFirstName = studentFirstName;
+    }
+
+    public String getStudentLastName() {
+        return studentLastName;
+    }
+
+    public void setStudentLastName(String studentLastName) {
+        this.studentLastName = studentLastName;
     }
 
     public String getEmail() {
@@ -54,9 +64,11 @@ public class StudentDTO {
     public String toString() {
         return "StudentDTO{" +
                 "id=" + id +
-                ", studentName='" + studentName + '\'' +
+                ", studentName='" + studentFirstName + '\'' +
+                ", studentName='" + studentLastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
+
 }

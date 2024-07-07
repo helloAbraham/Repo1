@@ -26,13 +26,14 @@ public class StudentImpl implements StudentService {
 
         StudentInfo studentObject = new StudentInfo(
                 studentDTO.getId(),
-                studentDTO.getStudentName(),
+                studentDTO.getStudentFirstName(),
+                studentDTO.getStudentLastName(),
                 studentDTO.getEmail(),
                 this.passwordEncoder.encode(studentDTO.getPassword())
         );
 
         studentRepo.save(studentObject);
-        return studentObject.getStudentName();
+        return studentObject.getStudentFirstName() + " " + studentObject.getStudentLastName();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class StudentImpl implements StudentService {
             if(isPwdCorrect) {
                 Optional<StudentInfo> student = studentRepo.findOneByEmailAndPassword(loginDTO.getEmail(),encodedPassword );
                 if(student.isPresent()) {
-                    return new LoginResponse("Welcome!, Login Success", true);
+                    return new LoginResponse("Welcome!, " + stu.getStudentFirstName() + " " + stu.getStudentLastName(), true);
                 } else {
                     return new LoginResponse("Login Failed", false);
                 }
