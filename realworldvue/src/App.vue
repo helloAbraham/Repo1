@@ -1,14 +1,22 @@
 <template>
   <nav>
+    <router-link :to="{ name: 'HomePage' }">Home</router-link> |
+    <router-link :to="{ name: 'About' }">About</router-link> |
+    <router-link :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>
+    <!--
+    below are working links
     <router-link :to="{ name: 'EventList' }">Events</router-link> |
     <router-link :to="{ name: 'About' }">About</router-link> |
     <router-link :to="{ name: 'CreateEvent' }">Create Event</router-link> |
     <router-link :to="{ name: 'DynamicTextField' }">DynamicTextField</router-link>
+    -->
   </nav>
   <router-view />
 </template>
 
 <style>
+
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -44,12 +52,9 @@ body {
   font-size: 16px;
   line-height: 1.5;
 }
-#app {
-  box-sizing: border-box;
-  width: 500px;
-  padding: 0 20px 20px;
-  margin: 0 auto;
-}
+
+
+
 hr {
   box-sizing: content-box;
   height: 0;
@@ -100,8 +105,9 @@ h6 {
 b,
 strong {
   font-weight: bolder;
-}ont-size: 21px;
-  f
+  font-size: 21px;
+}
+
 small {
   font-size: 80%;
 }

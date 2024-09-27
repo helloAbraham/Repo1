@@ -47,4 +47,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+label {
+  color: black;
+  text-shadow: 0cqmin;
+  font-weight: 700;
+}
+</style>

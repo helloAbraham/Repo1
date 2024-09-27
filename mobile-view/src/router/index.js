@@ -89,6 +89,16 @@ const routes = [
   },
 
   {
+    path: '/stulogin',
+    name: 'StuLogin',
+   
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "threecol" */ '../components/StuLogin.vue')
+  },
+
+  {
     path: '/logout',
     name: 'LogoutComponent',
    
@@ -250,5 +260,21 @@ router.beforeEach((to, from, next) => {
     next();
   }
 });
+
+
+/**
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = localStorage.getItem('token');
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!isAuthenticated) {
+      next('/login');  // Redirect to login page if not authenticated
+    } else {
+      next();  // Proceed to the authenticated route
+    }
+  } else {
+    next();  // Always call next() if route doesn't require authentication
+  }
+});
+ */
 
 export default router;

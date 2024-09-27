@@ -11,19 +11,20 @@ public class StudentInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String studentFirstName;
     private String studentLastName;
+    private String phoneNumber;
     private String email;
     private String password;
 
     public StudentInfo() {
     }
 
-    public StudentInfo(Long id, String studentFirstName, String studentLastName, String email, String password) {
+    public StudentInfo(Long id, String studentFirstName, String studentLastName, String phoneNumber, String email, String password) {
         this.id = id;
         this.studentFirstName = studentFirstName;
         this.studentLastName = studentLastName;
+        this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
     }
@@ -52,6 +53,14 @@ public class StudentInfo {
         this.studentLastName = studentLastName;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -74,6 +83,7 @@ public class StudentInfo {
                 "id=" + id +
                 ", studentFirstName='" + studentFirstName + '\'' +
                 ", studentLastName='" + studentLastName + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 '}';

@@ -4,7 +4,6 @@ import router from "./router";
 import store from "./store";
 import nProgress from "nprogress";
 import 'nprogress/nprogress.css'
-import Vuelidate from "vuelidate";
 import BaseInput from "./components/BaseInput.vue";
 import BaseButton from "./components/BaseButton.vue";
 import BaseSelect from "./components/BaseSelect.vue";
@@ -20,5 +19,5 @@ createApp(App)
 .use(store)
 .use(router)
 .use(nProgress)
-.use(Vuelidate)
 .mount("#app");
+

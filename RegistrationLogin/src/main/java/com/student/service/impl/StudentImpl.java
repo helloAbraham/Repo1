@@ -23,19 +23,18 @@ public class StudentImpl implements StudentService {
     private StudentRepository studentRepo;
     @Override
     public String addStudent(StudentDTO studentDTO) {
-
         StudentInfo studentObject = new StudentInfo(
                 studentDTO.getId(),
                 studentDTO.getStudentFirstName(),
                 studentDTO.getStudentLastName(),
+                studentDTO.getPhoneNumber(),
                 studentDTO.getEmail(),
                 this.passwordEncoder.encode(studentDTO.getPassword())
-        );
+                );
 
         studentRepo.save(studentObject);
         return studentObject.getStudentFirstName() + " " + studentObject.getStudentLastName();
     }
-
     @Override
     public LoginResponse loginStudent(LoginDTO loginDTO) {
         String msg = "";

@@ -1,13 +1,20 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+
 import EventList from "../views/EventList.vue";
 import NotFound from "../views/NotFound.vue";
 import PageRender from "../views/PageRender.vue";
+import HomePage from "../views/HomePage.vue";
 
 
 
 const routes = [
   {
     path: "/",
+    name: "HomePage",
+    component: HomePage,
+  },
+  {
+    path: "/evenlist",
     name: "EventList",
     component: EventList,
   },
@@ -147,6 +154,77 @@ const routes = [
   component: () =>
     import(/* webpackChunkName: "FitraPage" */ "../components/FitraPage.vue"),
 },
+
+{
+  path: "/updateData",
+  name: "ExampleDataUpdate",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../views/ExampleDataUpdate.vue"),
+},
+
+{
+  path: "/updateDataRender",
+  name: "ExampleDataUpdateRender",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../views/ExampleDataUpdateRender.vue"),
+},
+
+{
+  path: "/Alert",
+  name: "CreateAlert",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/CreateAlert.vue"),
+},
+
+// {
+//   path: "/resume",
+//   name: "HomePage",
+//   // route level code-splitting
+//   // this generates a separate chunk (about.[hash].js) for this route
+//   // which is lazy-loaded when the route is visited.
+//   component: () =>
+//     import(/* webpackChunkName: "FitraPage" */ "../views/HomePage.vue"),
+// },
+{
+  path: "/GridLayout",
+  name: "GridLayout",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/GridLayout.vue"),
+},
+
+{
+  path: "/responsive",
+  name: "ResponsivePage",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/ResponsivePage.vue"),
+},
+
+{
+  path: "/AlertSelected",
+  name: "CreateAlertSelectVersion",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/CreateAlertSelectVersion.vue"),
+},
+
+
 
 ];
 
