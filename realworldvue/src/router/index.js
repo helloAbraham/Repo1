@@ -28,6 +28,35 @@ const routes = [
     name:'bad-not-found',
     component: NotFound
   },
+
+  {
+    path: "/upimage",
+    name: "ImageUpload",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "imageupload" */ "../components/ImageUpload.vue"
+      ),
+  },
+
+  {
+    path: "/contact",
+    name: "ContactUs",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "contactus" */ "../components/ContactUs.vue"
+      ),
+  },
+
+
+
   {
     path: "/event/:id",
     name: "EventDetails",
@@ -224,6 +253,15 @@ const routes = [
     import(/* webpackChunkName: "FitraPage" */ "../components/CreateAlertSelectVersion.vue"),
 },
 
+{
+  path: "/child",
+  name: "ChildComponent",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "FitraPage" */ "../components/ChildComponent.vue"),
+},
 
 
 ];

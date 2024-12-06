@@ -2,7 +2,9 @@
   <nav>
     <router-link :to="{ name: 'HomePage' }">Home</router-link> |
     <router-link :to="{ name: 'About' }">About</router-link> |
-    <router-link :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>
+    <router-link :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link> | 
+    <router-link :to="{ name: 'ContactUs' }">Contact</router-link> | 
+    <router-link :to="{ name: 'ImageUpload' }">Upload</router-link>
     <!--
     below are working links
     <router-link :to="{ name: 'EventList' }">Events</router-link> |
@@ -12,7 +14,10 @@
     -->
   </nav>
   <router-view />
+ 
 </template>
+
+
 
 <style>
 

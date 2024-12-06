@@ -16,8 +16,14 @@
                 <BaseButtonStyle>Download Resume as .docx</BaseButtonStyle>
             </a>
         </div>
+
+        <div>
+             <a :href="fileUrlPdf" download="AbrahamResumeFed_Updated_24.pdf">
+            <i class="fas fa-file-word"></i> 
+                <BaseButtonStyle>Download Resume as .pdf</BaseButtonStyle>
+            </a>
+        </div>
            
-        <BaseButtonStyle>Download Resume as .pdf</BaseButtonStyle>
         <div>
             <a href="https://abrahamparker.com/linuxCommand/lcc.html">
                 <BaseButtonStyle>Linux Command Practice</BaseButtonStyle>
@@ -99,6 +105,12 @@
                 <p>2014 - 2019</p>
                 <p>Bachelor Degree in Computer Science</p>
             </div>
+            <br>
+            <div class="card">
+                <p><strong> Webster University, St. Louis, MO </strong></p>
+                <p>2024 - Continue...</p>
+                <p>Cybersecurity Operations (MS)</p>
+            </div>
         </div>
         
         <br>
@@ -123,8 +135,9 @@
     },
     data() {
         return {
-            fileUrl: 'https://abrahamparker.com/AbrahamResumeFed_Updated_24.docx',
-            pageUrl_1: 'https://abrahamparker.com/linuxCommand/lcc.html',
+            fileUrl: 'https://www.abrahamparker.com/AbrahamResumeFed_Updated_24.docx',
+            fileUrlPdf: 'https://www.abrahamparker.com/AbrahamResumeFed_Updated_24.pdf',
+            pageUrl_1: 'https://www.abrahamparker.com/linuxCommand/lcc.html',
 
             headers: ['Group', 'Details..'],
             tableData: [

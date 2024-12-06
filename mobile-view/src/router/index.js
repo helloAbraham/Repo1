@@ -199,6 +199,16 @@ const routes = [
   },
 
   {
+    path: "/upimage",
+    name: "ImageUpload",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "upimage" */ "../components/ImageUpload.vue"
+      ),
+  },
+  
+  {
     path: "/dollarinput",
     name: "CurrencyInput",
     props: true,
@@ -225,6 +235,15 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "SurveyQues" */ "../components/SurveyQues.vue"
+      ),
+  },
+  {
+    path: "/child",
+    name: "ChildComponent",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "SurveyQues" */ "../components/ChildComponent.vue"
       ),
   }
 

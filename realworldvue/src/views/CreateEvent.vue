@@ -144,7 +144,6 @@ export default {
     flex-wrap: wrap;
     position:sticky;
     background-repeat: no-repeat;
-    background-size: 300px 75px;
  
   }
 </style>
