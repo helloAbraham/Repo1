@@ -42,6 +42,9 @@ import axios from 'axios';
                 const formData = new FormData();
                 formData.append('file', this.selectedFile);
 
+                    //For production 'https://api.abrahamparker.com/api/images/upload'
+                    //For localtest
+                    //http://localhost:8082/api/images/upload
                 try {                              
                     const response = await axios.post('https://api.abrahamparker.com/api/images/upload', formData, {
                     headers: {

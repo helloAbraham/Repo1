@@ -49,6 +49,8 @@
             try {
         // Define the endpoint for th;e POST request
        // const endpoint = 'https://api.abrahamparker.com/api/images/contact';
+              //localtest
+              //http://localhost:8082/api/images/contact
 
         // Use the `fetch` API to send the form data as a POST request
         const response = await axios.post('https://api.abrahamparker.com/api/images/contact', this.form, {

@@ -43,6 +43,32 @@ const routes = [
   },
 
   {
+    path: "/imagelist",
+    name: "ImageList",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "imagelist" */ "../components/ImageList.vue"
+      ),
+  },
+
+  {
+    path: "/imagevisit",
+    name: "ImageVisit",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "imagevisit" */ "../components/ImageVisit.vue"
+      ),
+  },
+  
+  {
     path: "/contact",
     name: "ContactUs",
     props: true,
