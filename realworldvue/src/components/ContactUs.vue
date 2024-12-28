@@ -17,7 +17,10 @@
           <label for="message">Message:</label>
           <textarea id="message" v-model="form.message" rows="4" required></textarea>
         </div>
-        <button type="submit">Send</button>
+        <BaseButtonStyle type="submit">
+          <i class="fa fa-paper-plane"></i>
+           &nbsp; Send 
+        </BaseButtonStyle>
       </form>
       <p v-if="responseMessage" :class="responseClass">{{ responseMessage }}</p>
     </div>
@@ -28,8 +31,12 @@
   
   <script>
     import axios from 'axios';
+import BaseButtonStyle from './BaseButtonStyle.vue';
   export default {
     name: 'ContactUs',
+    components: {
+      BaseButtonStyle,
+    },
     data() {
       return {
         form: {
@@ -65,7 +72,7 @@
 
           // Clear the form data
           this.form.name = "";
-          this.form.phone="";
+          this.form.phoneNumber="";
           this.form.email = "";
           this.form.message = "";
       } catch (error) {
@@ -138,5 +145,11 @@
   position: relative;
   min-height: 100vh;
 }
+
+/* Example of styling the icon */
+i {
+  color: #232929; /* Change the color of icons */
+}
+
   </style>
   

@@ -4,7 +4,7 @@
             <h1>Upload Image</h1> <br/><br/>
             <input type="file" @change="handleFileChange" />
             <br/>
-            <BaseButtonStyle @click="uploadImage">Upload</BaseButtonStyle>
+            <BaseButtonStyle @click="uploadImage"><i class='fas fa-folder-open'></i> &nbsp; Upload</BaseButtonStyle>
             <div v-if="uploadStatus">{{ uploadStatus }}</div>
 
         </div>
@@ -53,6 +53,8 @@ import axios from 'axios';
                     });
                     //this.uploadStatus = 'File uploaded successfully: ' + response.data;
                     this.uploadStatus = response.data;
+                    //After file uploaded then clear the selectedFile
+                    this.selectedFile = null;
                 } catch (error) {
                     this.uploadStatus = 'Error uploading file.';
                     console.error("Error uploading file: ", error);
@@ -72,4 +74,10 @@ import axios from 'axios';
   flex-direction: column;
   align-items: center;
 }
+
+  /* Example of styling the icon */
+  i {
+    color: #232929; /* Change the color of icons */
+  }
+
 </style>

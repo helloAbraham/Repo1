@@ -12,20 +12,20 @@
         
         <div>
              <a :href="fileUrl" download="AbrahamResumeFed_Updated_24.docx">
-            <i class="fas fa-file-word"></i> 
-                <BaseButtonStyle>Download Resume as .docx</BaseButtonStyle>
+            
+                <BaseButtonStyle><i class="fas fa-file-word"></i> Download Resume as .docx</BaseButtonStyle>
             </a>
         </div>
 
         <div>
              <a :href="fileUrlPdf" download="AbrahamResumeFed_Updated_24.pdf">
-            <i class="fas fa-file-word"></i> 
-                <BaseButtonStyle>Download Resume as .pdf</BaseButtonStyle>
+            
+                <BaseButtonStyle><i class="fas fa-file-pdf"></i> Download Resume as .pdf</BaseButtonStyle>
             </a>
         </div>
            
         <div>
-            <a href="https://abrahamparker.com/linuxCommand/lcc.html">
+            <a href="pageUrl_1">
                 <BaseButtonStyle>Linux Command Practice</BaseButtonStyle>
             </a>
         </div>

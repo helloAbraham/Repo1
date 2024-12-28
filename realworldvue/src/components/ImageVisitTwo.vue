@@ -1,37 +1,23 @@
 <template>
-    <div>
-      <table border="1" cellpadding="10">
-        <!-- Table Header -->
-        <thead>
-          <tr>
-            <!-- Render the 3 columns -->
-             <th>Name</th>
-            <th>URL</th>  
-            <th>Date & Time</th>
-          </tr>
-        </thead>
-  
-        <tbody>
-          <!-- Table Rows -->
-          <tr v-for="(row, rowIndex) in paginatedItems" :key="rowIndex">
-            <td>
-                {{ row.name }}
-                <!-- <img :src="row.url" :alt="'row ' + rowIndex" class="image" /> -->
-            </td>
-            <td>
+  <div>
+    <h1>My Image Gallery </h1>
+    <div v-if="loading">Loading images...</div>
+          <div v-for="(row, rowIndex) in paginatedItems" :key="rowIndex">
+                <div class="image-gallery">
+                <img :src="row.url" :alt="'row ' + rowIndex" class="image" /> 
+               
+                <a :href="row.url" target="_blank" rel="noopener noreferrer" />
+                 
+              </div>
+          
               <!-- Render the URL as a clickable anchor tag -->
-              <a :href="row.url" target="_blank">{{ row.url }}</a>
-            </td>
-            <td>{{ row.currentDate }}</td>
-          </tr>
-        </tbody>
-      </table>
-  
+             
+            </div>
       <!-- Pagination Controls -->
       <div class="pagination">
-        <BaseButtonStyle @click="prevPage" :disabled="currentPage === 1">Previous</BaseButtonStyle>
+        <BaseButtonStyle @click="prevPage" :disabled="currentPage === 1"><i class='fas fa-angle-double-left'></i> &nbsp; Previous</BaseButtonStyle>
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
-        <BaseButtonStyle @click="nextPage" :disabled="currentPage === totalPages">Next</BaseButtonStyle>
+        <BaseButtonStyle @click="nextPage" :disabled="currentPage === totalPages"> Next &nbsp; <i class='fas fa-angle-double-right'></i></BaseButtonStyle>
       </div>
     </div>
   </template>
@@ -41,14 +27,14 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
 
 
   export default {
-    name:'ImageVisit',
+    name:'ImageVisitTwo',
 
     components: {
         BaseButtonStyle,
     },
     data() {
       return {
-        headers: ['NAME', 'URL', 'DATE & TIME'],  // Only 'URL' header
+       
         tableData: { 
           content: [], 
           totalPages: 0, 
@@ -56,11 +42,9 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
           totalElements: 0 
         },
         currentPage: 1,
-        itemsPerPage: 10
+        itemsPerPage: 10,
+        loading: true,
       };
-    }, 
-    mounted() {
-      this.fetchData(0);  // Fetch data when the component is mounted (page 0 in API)
     },
   
     computed: {
@@ -77,16 +61,19 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
   
     methods: {
       // Fetch data from the backend with pagination
-      //
+      //https://api.abrahamparker.com/api/images/listAll?page=${page}&size=${this.itemsPerPage}`
       async fetchData(page = 0) {
         try {
-          const response = await fetch(`https://api.abrahamparker.com/api/images/listAll?page=${page}&size=${this.itemsPerPage}`); // Replace with your actual endpoint
+          const response = await fetch(`http://localhost:8082/api/images/listAll?page=${page}&size=${this.itemsPerPage}`); // Replace with your actual endpoint
           const data = await response.json();
           this.tableData = data;  // Update the tableData with paginated response
           this.currentPage = page + 1; // Update the current page (API is 0-indexed, Vue is 1-indexed)
         } catch (error) {
           console.error('Error fetching data:', error);
-        }
+        } finally {
+        this.loading = false;
+      }
+
       },
   
       // Go to the next page
@@ -104,7 +91,9 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
       }
     },
   
-   
+    mounted() {
+      this.fetchData(0);  // Fetch data when the component is mounted (page 0 in API)
+    }
   };
   </script>
   
@@ -151,6 +140,17 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
   
   .pagination span {
     margin: 0 10px;
+  }
+  .image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .image {
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 8px;
   }
   </style>
   

@@ -1,10 +1,13 @@
 <template>
   <nav>
-    <router-link :to="{ name: 'HomePage' }">Home</router-link> |
-    <router-link :to="{ name: 'About' }">About</router-link> |
-    <router-link :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link> | 
-    <router-link :to="{ name: 'ContactUs' }">Contact</router-link> | 
-    <router-link :to="{ name: 'ImageUpload' }">Upload</router-link>
+    <div >
+    <router-link id="example1" :to="{ name: 'HomePage' }">Home</router-link>  
+    <router-link id="example1" :to="{ name: 'About' }">About</router-link>  
+    <router-link id="example1" :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>  
+    <router-link id="example1" :to="{ name: 'ContactUs' }">Contact</router-link>   
+    <!-- <router-link id="example1" :to="{ name: 'ImageUpload' }">Upload</router-link><br> -->
+    <div class="shadow">_______________________________________</div>
+  </div>
     <!--
     below are working links
     <router-link :to="{ name: 'EventList' }">Events</router-link> |
@@ -32,15 +35,43 @@
 
 nav {
   padding: 30px;
+  font-size: 16px;
+  color: black;
 }
 
-nav a {
+nav a:hover {
   font-weight: bold;
-  color: #2c3e50;
+  color: #0de885;
+  transform: translateY(-25px); /* Slight upward movement on hover */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
+  font-size: 20px;
+  text-decoration: underline;
+  
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #ef0ad0;
+  font-size: 22px;
+  text-decoration: underline;
+ 
+
+}
+
+a {
+  margin-left: 3.5px;
+  text-decoration: none;
+}
+
+#example1 {
+  border: 2px solid rgb(10, 200, 238);
+  padding: 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+.shadow {
+  box-shadow: #2c3e50;
 }
 h4 {
   font-size: 16px;
@@ -66,7 +97,7 @@ hr {
   overflow: visible;
 }
 a {
-  color: #39b982;
+  color: #000503;
   font-weight: 600;
   background-color: transparent;
 }
@@ -271,7 +302,7 @@ select {
 }
 select:focus {
   border-color: #39b982;
-  outline: 0;
+  outline: 1px;
 }
 select:focus::ms-value {
   color: #000;
@@ -352,4 +383,6 @@ select::ms-expand {
 .button.-icon-center {
   padding: 0 20px;
 }
+
+
 </style>

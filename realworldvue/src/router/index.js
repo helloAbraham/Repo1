@@ -67,7 +67,46 @@ const routes = [
         /* webpackChunkName: "imagevisit" */ "../components/ImageVisit.vue"
       ),
   },
+
+  {
+    path: "/iam",
+    name: "ImageVisitTwo",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "iam" */ "../components/ImageVisitTwo.vue"
+      ),
+  },
+
+  {
+    path: "/deletefile",
+    name: "DeleteFile",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "deletefile" */ "../components/DeleteFile.vue"
+      ),
+  },
   
+  {
+    path: "/allimg",
+    name: "MyImageGallery",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "deletefile" */ "../components/MyImageGallary.vue"
+      ),
+  },
+
   {
     path: "/contact",
     name: "ContactUs",
@@ -280,6 +319,16 @@ const routes = [
 },
 
 {
+  path: "/imageshow",
+  name: "PictureImg",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "imageshow" */ "../components/PictureImg.vue"),
+},
+
+{
   path: "/child",
   name: "ChildComponent",
   // route level code-splitting
@@ -289,6 +338,25 @@ const routes = [
     import(/* webpackChunkName: "FitraPage" */ "../components/ChildComponent.vue"),
 },
 
+{
+  path: "/parentslot",
+  name: "ParemtNamedSlot",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "childslot" */ "../components/ParentNamedSlot.vue"),
+},
+
+{
+  path: "/parentscopedslot",
+  name: "LibraryScopedSlot",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "childslot" */ "../components/LibraryScopedSlot"),
+},
 
 ];
 

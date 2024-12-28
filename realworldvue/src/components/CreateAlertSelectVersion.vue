@@ -29,7 +29,10 @@
       <div v-if="showCustomeTextbox">
       <BaseInput  v-model="alertMessage"  placeholder="Enter your custom alert message" size="50" background-color="FFFDD0" />
       </div>
-      <BaseButtonStyle @click="createAlert">Create Alert</BaseButtonStyle>
+      <BaseButtonStyle @click="createAlert">
+        <i class="fa fa-paper-plane"></i>
+           &nbsp; Create Alert
+      </BaseButtonStyle>
   
       <ModalComponent 
       :visible="showModal"

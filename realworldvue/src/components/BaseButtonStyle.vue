@@ -63,6 +63,10 @@ body{
     box-shadow: 0 7px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
 
 .btn-2 {
   background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
@@ -78,4 +82,10 @@ body{
 .btn-5 {
   background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 51%, #ffecd2 100%);
 }
+
+/* Example of styling the icon */
+i {
+  color: #111111; /* Change the color of icons */
+}
+
 </style>
