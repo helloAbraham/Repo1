@@ -5,6 +5,7 @@ import EventList from '../views/EventList.vue';
 
 
 import store from '@/store';
+import HomePage from '@/views/HomePage.vue';
 
 const routes = [
   {
@@ -12,6 +13,13 @@ const routes = [
     name: 'Home',
     component: HomeView
   },
+
+    {
+    path: '/HomePage',
+    name: 'HomePage',
+    component: HomePage
+  },
+
   {
     path:"/404",
     name:"NotFound",
@@ -149,15 +157,6 @@ const routes = [
       ),
   },
 
-  {
-    path: "/jumaevent/:id",
-    name: "JumaEventDetails",
-    props: true,
-    component: () =>
-      import(
-        /* webpackChunkName: "eventdetails" */ "../views/JumaEventDetails.vue"
-      ),
-  },
 
   {
     path: "/upevent/:id",
@@ -169,7 +168,7 @@ const routes = [
       ),
   },
   {
-    path: "/profile",
+    path: "/allnews",
     name: "Dashboard",
     props: true,
     // route level code-splitting
@@ -182,14 +181,18 @@ const routes = [
       //meta: { requiresAuth: true } 
   },
   
-  {
-    path: "/praytime",
-    name: "PrayerTimes",
+{
+    path: "/latestnews",
+    name: "LatestNews",
     props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
     component: () =>
       import(
-        /* webpackChunkName: "eventdetails" */ "../views/PrayerTimes.vue"
+        /* webpackChunkName: "dashborad" */ "../views/LatestNews.vue"
       ),
+      //meta: { requiresAuth: true } 
   },
 
   {
@@ -214,11 +217,11 @@ const routes = [
 
   {
     path: "/ContactUs",
-    name: "ContactUs",
+    name: "ContactUsNew",
     props: true,
     component: () =>
       import(
-        /* webpackChunkName: "myform" */ "../views/ContactUs.vue"
+        /* webpackChunkName: "myform" */ "../views/ContactUsNew.vue"
       ),
   },
 
@@ -259,14 +262,128 @@ const routes = [
       import(
         /* webpackChunkName: "IamgeFromServer" */ "../views/BoardMembers.vue"
       ),
-  }
+  },
+    {
+    path: "/EditPage",
+    name: "EditableParagraphs",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "EditableParagraphs" */ "../views/EditableParagraphs.vue"
+      ),
+    },
+
+    {
+    path: "/qrcodegen",
+    name: "QrCode",
+    props: true,
+    component: () =>
+      import(
+        /* webpackChunkName: "QrCodeGenerator" */ "../views/QrCode.vue"
+      ),
+    },
+
+    {
+        path: "/playlist",
+        name: "PlayList",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "PlayList" */ "../views/PlayList.vue"
+      ),
+    },
+
+    {
+        path: "/seform",
+        name: "SeasonEpisode",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "PlayList" */ "../components/SeasonEpisode.vue"
+      ),
+    },
+
+    {
+        path: "/seasonlist",
+        name: "SeasonList",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "PlayList" */ "../components/SeasonList.vue"
+      ),
+    },
+
+        {
+        path: "/seupdate",
+        name: "SeasonEpisodeUpdate",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "PlayList" */ "../components/SeasonEpisodeUpdate.vue"
+      ),
+    },
+
+    {
+        path: "/live",
+        name: "LiveStream",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "LiveStream" */ "../components/LiveFed.vue"
+      ),
+    },
+
+        {
+        path: "/tv",
+        name: "WatchLive",
+        props: true,
+        component: () =>
+          import(
+        /* webpackChunkName: "WatchLive" */ "../components/WatchLive.vue"
+      ),
+    },
+
+    {
+      path: "/jlist",
+      name: "JournalistList",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "JournalistList" */ "../components/JournalistList.vue"
+        )
+    }
+
+      //   {
+      //   path: "/liveFed",
+      //   name: "LiveFed",
+      //   props: true,
+      //   component: () =>
+      //     import(
+      //   /* webpackChunkName: "LiveStream" */ "../components/LiveFed.vue"
+      // ),
+    //},
 
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+
+  scrollBehavior(to, from, savedPosition) {
+    // Restore the previous scroll position when using
+    // browser Back/Forward buttons
+    if (savedPosition) {
+      return savedPosition;
+    }
+
+    // Otherwise, go to the top of the page
+    return {
+      top: 0,
+      left: 0,
+    };
+  },
 });
+
 
 
 router.beforeEach((to, from, next) => {

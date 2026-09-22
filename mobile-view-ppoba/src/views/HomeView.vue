@@ -1,220 +1,353 @@
 <template>
-  <div class="headerSize">
-      <MarqueeStyle/> <br/>
-      <h1>Patriots of Bangladesh, USA</h1>
-       
-  </div>
-  
-  <section class="innerBoxSize">
-    <PhotoSlideShow />
-    
-    <br>
-  </section>
+  <div class="home">
+ 
+   <section class="hero">
+  <h1 class="title">Probas Alapon</h1>
+
+  <p class="tagline">
+    Real Conversations. Raw Opinions. Unfiltered Stories.
+  </p>
+
+  <a
+    v-if="latestEpisodeLink"
+    :href="latestEpisodeLink"
+    target="_blank"
+    rel="noopener"
+    class="primary-btn"
+  >
+    Watch Latest Episode
+  </a>
+</section>
 
 
 
-  
-  <div class="container">
-   
-   <div class="column"><h2><b>Recent events:</b></h2>
-     <UpcomingList />
-     <br/>
-     <br/>
-     <br/>
-     <br/>
-     <br/>
-     <br/>
-     <div>
-       <h1><strong>Details Links:</strong></h1>
-       <br/>
-       <EventListPrevious/>
-       <br/>
-       <br/>
-       <ButtonLink url="">
-         Protest one 
-       </ButtonLink>
-       <br/>
-       <br/>
-       <br/>
+    <section class="innerBoxSize">
+      <PhotoSlideShow />
+      <br>
+    </section>
+    <!-- Glow animated line in horizontal-->
+    <div class="glow-line"></div>
 
-     
-
-     </div>
-     
-
-    </div>
-      <div class="column-right">
-          <EventList/>
-
-      </div>
-</div>
-<div>
-  <CardCarousel />
-</div>
-  
-  <section class="hero">
-      <div class="hero-text container">
-        <HelloWorld slogan="Islamic Center in Elmhurst" />
-     
-        <h4></h4>
-        
-        <hr />
-        <h2 class="h2">
-         Patriots of Bangladesh, USA
-        </h2>
-        <fieldset>
-        <legend class="legend-size">Patriots of Bangladesh, USA</legend>
-        <p class="h4">
-          is a non-profit, non-political organization. We always stand for humanity. That is our goal.<br>
-          Our helping hand always for Bangladesh. This organization, all members are Bangladeshi American and living in USA.<br>
-          Though we apart from 13,000 miles we are always want to be closed to Bangladeshi people. A beautiful development democratic country in the  earth.
-          <br> Well known over the world "A nation died for Mother language", U.N declared 'international mother language day on February 21st'
-          They just need little help to move forward developing the country's GDP and all Sectors. <a href="https://en.wikipedia.org/wiki/Bangladesh">read more </a>
-
-        </p>
-      </fieldset>
-        <hr />
-      </div>
-      
+    <!-- About Section -->
+    <section class="about">
+      <h2>About the Show</h2>
+      <p>
+        <strong>Probas Alapon</strong> is a talk show model focused on honest
+        discussions, cultural insights, community support, and untold stories from everyday people
+        and special guests. It explores life abroad—experiences, happiness, success, failure, and much more, 
+        all through the lens of real conversations and raw opinions. We aim to create a space where
+        people can share their stories, learn from each other, and find a sense of connection and belonging, 
+        no matter where they are in the world.
+      </p>
     </section>
 
-  <div class="sizeDown">
+    <!-- Featured Episodes -->
+    <section class="episodes">
+      <h2>Featured Episodes</h2>
 
+      <div class="episode-list">
+        <div
+          class="episode-card"
+          v-for="episode in episodes"
+          :key="episode.id"
+        >
+          <h3>{{ episode.title }}</h3>
+          <p>{{ episode.description }}</p>
+          <span class="date">{{ episode.date }}</span>
+        </div>
+      </div>
+
+    </section>
+
+    <div>
+  <CardCarousel />
+
+
+  </div>
+      <div class="glow-line"></div>
+    <!-- Call to Action -->
+    <section class="cta">
+      <h2>Be a Part of the Conversation</h2>
+      <p>
+        Want to share your story or join the discussion?
+      </p>
+      <br/>
+
+      <button class="secondary-btn" @click="contactUs">
+         Contact Us
+      </button>
+
+    </section>
   </div>
 </template>
 
 <script>
 import CardCarousel from '@/components/CardCarousel.vue';
-import EventList from '../views/EventList.vue';
-import EventListPrevious from '../views/EventListPrevious.vue';
-import MarqueeStyle from '@/components/MarqueeStyle.vue';
 import PhotoSlideShow from '@/components/PhotoSlideShow.vue';
-  export default {
-      name: 'PrayerTimes',
-      components: {
-          EventList,
-          EventListPrevious,
-          MarqueeStyle,
-          PhotoSlideShow,
-          CardCarousel,
-      },
-      data() {
-          return {
 
-          }
-      },
+import axios from 'axios';
+export default {
+  name: "HomePage",
+  data() {
+    return {
+      latestEpisodeLink: "",
+     // headline: "",
+     // latestEpisodeLink: "https://www.youtube.com/@abrahamparker8684/videos",
+      // Comes from database / API
+      //latestEpisodeLink: "https://api.abrahamparker.com/api/content/1",
+       youtubeVideoId: "", // dynamic video ID from API
+        youtubeEmbedUrl: "", // full iframe URL from API or YouTube
+      episodes: [
+        {
+          id: 1,
+          title: "Life Abroad: The Untold Truth",
+          description: "A deep conversation about migrant life and identity.",
+          //date: "Feb 14, 2026"
+        },
+        {
+          id: 2,
+          title: "Success Without Shortcuts",
+          description: "Stories of patience, failure, and persistence.",
+          //date: "Feb 22, 2026"
+        },
+        {
+          id: 3,
+          title: "Culture, Change & Conflict",
+          description: "How modern life is reshaping traditions.",
+          //date: "Feb 28, 2026"
+        }
+      ]
+    };
+  },
+  components: {
+    PhotoSlideShow,
+    CardCarousel
+  },
 
-  }
+    mounted() {
+
+     // Fetch latest episode link from API
+     //fetch("http://localhost:8082/api/content/1")
+    fetch("https://api.abrahamparker.com/api/content/1")
+      .then(response => response.json())
+      .then(data => {
+        this.latestEpisodeLink = data.paragraph1;
+      })
+      .catch(error => {
+        console.error("API error:", error);
+
+        // fallback if API fails
+        this.latestEpisodeLink =
+          "https://www.youtube.com/@abrahamparker8684/videos";
+      });
+      //Now I will fetch from .txt file from first line
+  //     fetch("https://www.abrahamparker.com/latestepisode.txt")
+  // .then(response => response.text())   // read as text (not JSON)
+  // .then(text => {
+  //   const firstLine = text.split('\n')[0].trim(); // get first line
+  //   this.latestEpisodeLink = firstLine;
+  // })
+  // .catch(error => {
+  //   console.error("File load error:", error);
+
+  //   // fallback if file fails
+  //   this.latestEpisodeLink =
+  //     "https://www.youtube.com/@abrahamparker8684/videos";
+  // });
+
+  },
+      
+  methods: {
+    watchLatest() {
+      // later you can route to /episodes or a video page
+      alert("Redirecting to the latest episode!");
+    },
+
+    contactUs() {
+      this.$router.push({
+        name: "ContactUsNew",
+      });
+    },
+  },
+
+  
+};
 </script>
 
 <style scoped>
-.hero {
-  
-  background-attachment: fixed;
-  position: relative;
-  height: 100vh;
-
-  img {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-  }
-
-  .hero-text {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #0b0c0c;
-
-    h4 {
-      text-transform: uppercase;
-      font-size: 22px;
-      padding-bottom: 4px;
-    }
-
-    .h2 {
-      font-family: 'Times New Roman', Times, serif;
-      font-size: 35px;
-      color: white;
-      text-shadow: 3px 5px 4px rgb(25, 222, 85), 0 0 35px blue, 0 0 10px blue;
-      background-image: url('../assets/currentImage/widthBDimage.jpg'); 
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    min-height: 10vh; /* Ensure the container takes up the full height of the viewport */
-    /* Add any other CSS styles as needed */
-
-
-    }
-
-    hr:nth-child(2) {
-      max-width: 365px;
-      margin-bottom: 16px;
-    }
-    hr:nth-child(4) {
-      height: 6px;
-      background-color: #fff;
-      border: none;
-      max-width: 85px;
-      margin-top: 16px;
-    }
-    
-  }
-}
-.container {
-    margin-top: -10px;
-   
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
-    gap: 1px; /* Spacing between columns */
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: -50px;
-}
-.headerSize {
+.home {
+  font-family: "Poppins", sans-serif;
+  background-color: #0f172a; /* deep navy */
+  color: #e5e7eb;
   padding-top: 175px;
 }
-.sizeDown {
-  padding-top: 625px;
+
+/* HERO */
+.hero {
+  background: radial-gradient(circle at top, #0dd743, #1e1b4b);
+  text-align: center;
+  padding: 15px 10px;
+  border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-top-right-radius: 60px;
 }
 
-h1 { 
-        color: #34cf05; 
-        text-align: center;
-        background-color: red;
-        text-shadow: -2px 2px 4px 
-            rgba(0, 0, 0, 0.5),  
-            2px -2px 0 
-            rgba(255, 255, 255, 0.9); 
-    } 
+.title {
+  font-size: 3.5rem;
+  font-weight: 1000;
+  letter-spacing: 2px;
+  color: #fa1515; /* gold */
+    /* White glow / shadow effect */
+  text-shadow:
+    5px 2px 4px rgba(245, 240, 244, 0.4),
+    0 6px 20px rgba(239, 247, 250, 0.25);
+}
+
+
+
+
+.tagline {
+  font-size: 1.25rem;
+  margin: 20px 0 35px;
+  color: #e0e7ff;
+}
+
+/* BUTTONS */
+.primary-btn {
+  background: #facc15;
+  color: #1e1b4b;
+  padding: 14px 35px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;   /* removes underline */
+  display: inline-block;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+ background: #ff9800;
+  color: #000;
+}
+
+.secondary-btn {
+  background: linear-gradient(135deg, #d70d97, #fc06ec);
+  color: #fff;
+  padding: 14px 35px;
+  border-radius: 30px;
+  font-weight: 600;
+ text-decoration: none;   /* removes underline */
+}
+
+/* SECTIONS */
+section {
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about,
+.cta {
+  text-align: center;
+}
+
+.about h2,
+.episodes h2,
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #facc15;
+}
+
+.about p,
+.cta p {
+  max-width: 750px;
+  margin: auto;
+  font-size: 1.05rem;
+  color: #c7d2fe;
+}
+
+/* EPISODES */
+.episode-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.episode-card {
+  background: linear-gradient(180deg, #1e293b, #020617);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.episode-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.episode-card h3 {
+  color: #a5b4fc;
+  margin-bottom: 12px;
+}
+
+.episode-card p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+.date {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 14px;
+  background-color: #7c3aed;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* CTA */
+.cta {
+  background: linear-gradient(135deg, #020617, #1e1b4b);
+  border-radius: 40px;
+  margin: 80px auto;
+  padding: 80px 30px;
+}
+
 .innerBoxSize {
   width: 425px;
   max-width: 425px;
   min-width: 350px;
-  margin-top: .5%;
+  margin-top: -40px;
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: -100px;
 
 }
-.column {
-    /* Styles for each column */
-    margin-left: auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #3206d1;
-    margin-bottom: 60px;
-    height: 1200px;
-    
+
+.glow-line {
+  height: 3px;
+  width: 100%;
+  margin: 50px auto;
+  margin-bottom: -25px;
+  background: #ec16b7;
+  box-shadow: 0 0 10px #7c3aed,
+              0 0 20px #7c3aed;
+  border-radius: 50px;
 }
 
-.column-right {
-    /* Styles for each column */
-    margin-left: auto;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border: 1px solid #3206d1;
-    margin-bottom: 60px;
-    height: 1200px;
-    
+.youtube-wrapper {
+  width: 240px;       /* 2.5 inch approx */
+  aspect-ratio: 16 / 9;
+  margin: 20px auto;  /* center on page */
 }
+
+.youtube-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+}
+
 </style>

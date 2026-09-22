@@ -1,97 +1,175 @@
 <template>
   
-    <section class="topPadding">
-      
-      <div class="hero-text container">
-        <h4> </h4>
-       <!-- <img :src="imageSrc" alt="Imam_Image" class="photoSize"> -->
-        <hr />
-        <h2 class="h2">
-          Our goal
-        </h2>
-        
-        <fieldset>
-        <legend class="fontStyle">Patriot of Bangladesh</legend>
-        <p class="fontStyle">
-        All the Bangladeshi people abroad in America are together for Bangladesh. We are going to participate some of the development as voluntry.</p>
-      </fieldset>
-        <hr />
-      </div>
-         
-    </section>
-   
     <!-- <div>
         <ProfileOne :profile="userProfile" />
     </div> -->
    
     <div class="sizeDown">
     </div> 
+    <div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <h2>Seasons</h2>
+      <ul>
+        <li
+          v-for="season in seasons"
+          :key="season.id"
+          @click="selectSeason(season)"
+        >
+          {{ season.name }}
+        </li>
+      </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+      <div v-if="!selectedSeason">
+        <h2>Please Select a Season to watch</h2>
+      </div>
+
+      <div v-else>
+        <h2>{{ selectedSeason.name }}</h2>
+
+        <!-- Episodes List -->
+        <ul class="episodes">
+          <li
+            v-for="episode in selectedSeason.episodes"
+            :key="episode.id"
+            @click="playEpisode(episode)"
+          >
+            {{ episode.title }}
+          </li>
+        </ul>
+
+        <!-- YouTube Player -->
+        <div v-if="selectedVideo" class="player">
+          <iframe
+            width="700"
+            height="400"
+            :src="youtubeUrl"
+            frameborder="0"
+            allowfullscreen
+          >
+          </iframe>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
 </template>
 
 <script>
 import ProfileOne from '../components/ProfileOne.vue';
-    export default {
-        name:'Dashboard',
 
-        components: {
-            ProfileOne,
-        },
-        data() {
-            return {
-              imageURL: '@/assets/currentImage/BD_Map.png',
-                imageSrc: require('../assets/Saiful_Imam.jpg'), // Import your image
-                userProfile: {
-                    name: 'Saifulla Khan',
-                    avatar: 'https://via.placeholder.com/100',
-                    bio: 'A software developer',
-                    details: {
-                    Email: 'john@example.com',
-                    Location: 'New York'
-                    // Additional profile details
-                    }
-                }
-            }
-        }
+export default {
+  name: 'Dashboard',
+  components: { ProfileOne },
+
+  data() {
+    return {
+      seasons: [],
+      selectedSeason: null,
+      selectedVideo: null
+    };
+  },
+
+  computed: {
+    youtubeUrl() {
+      return this.selectedVideo
+        ? `https://www.youtube.com/embed/${this.selectedVideo}`
+        : '';
     }
+  },
+
+  methods: {
+    async fetchSeasons() {
+      try {
+        //for local testing, use this URL: http://localhost:8082/api/seasons
+        //const response = await fetch('http://localhost:8082/api/seasons');
+        //for production, use this URL: https://api.abrahamparker.com/api/seasons
+        const response = await fetch('https://api.abrahamparker.com/api/seasons');
+        if (!response.ok) throw new Error('Failed to fetch seasons');
+        this.seasons = await response.json();
+      } catch (error) {
+        console.error('Error fetching seasons:', error);
+      }
+    },
+
+    selectSeason(season) {
+      this.selectedSeason = season;
+      this.selectedVideo = null;
+    },
+
+    playEpisode(episode) {
+      this.selectedVideo = episode.youtubeId;
+    }
+  },
+
+  mounted() {
+    this.fetchSeasons();
+  }
+};
 </script>
 
+
+
+
 <style scoped>
-.topPadding {
-    padding-top: 200px;
+.dashboard {
+  display: flex;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  padding-top: 175px;
 }
-.fontStyle{
-        font-size: 20px;
-    }
 
-.background-container {
-
-
-    background-image: url('../assets/zelle_qr.png'); /* Replace with the path to your image */
-    background-size: cover; /* Cover the entire container */
-    background-position: center; /* Center the image */
-    min-height: 29%; /* Ensure the container takes up the full height of the viewport */
-    /* Add any other CSS styles as needed */
-    display: flex;
-    flex-wrap: wrap;
-    position:sticky;
-    
-  }
-  .photoSize {
-    width: 2in;
-    height: auto;
-  }
-
-  .sizeDown {
-  padding-top: 525px;
+.sidebar {
+  width: 250px;
+  background: #2c3e50;
+  color: white;
+  padding: 20px;
 }
-.my-component {
 
-  opacity: 0.2;
-  
-  background-image: url('@/assets/currentImage/BD_Map.png');
-  background-repeat: no-repeat;
-  background-size: 680px 440px;
-  background-position: center; /* Adjust as needed */
-
+.sidebar ul {
+  list-style: none;
+  padding: 0;
 }
+
+.sidebar li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.sidebar li:hover {
+  background: #34495e;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+}
+
+.episodes {
+  list-style: none;
+  padding: 0;
+}
+
+.episodes li {
+  padding: 8px;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.episodes li:hover {
+  background: #f2f2f2;
+}
+
+.player {
+  margin-top: 20px;
+}
+
+
 </style>

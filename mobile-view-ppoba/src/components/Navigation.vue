@@ -3,40 +3,44 @@
    <nav>
     
     <div class="branding">
-        <!-- Below router-link to="/abc" way image can be taken different page -->
-        <router-link  id="logo" to="/"><img src="@/assets/logo.png"  alt="logo" to="/">PPOBA</router-link>
+        <router-link  id="logo" to="/"><img src="@/assets/logo.png"  alt="logo" to="/">probasalapon</router-link>
     </div>
     <ul v-show="!mobile" class="navigation">
-        <li><router-link class="link" :to="{name: 'Home'}">Home</router-link></li>
-        <li><router-link class="link" :to="{name: 'Dashboard'}">Dashboard</router-link></li>
-        <!-- <li><router-link class="link" :to="{name: 'BackgroundImageAdd'}">Ramadan</router-link></li> -->
-        <li><router-link class="link" :to="{name: ''}">Latest News</router-link></li>
-        <!-- <li><router-link class="link" :to="{name: 'PrayerTimes'}">Prayer Time</router-link></li> -->
-        <li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li>
+        <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link">Home</router-link></li>
+        <li><router-link class="link" :to="{name: 'Dashboard'}" activeClass="active-link" exactActiveClass="active-link">All News</router-link></li>
+        <li><router-link class="link" :to="{name: 'LatestNews'}" activeClass="active-link" exactActiveClass="active-link">Latest News</router-link></li>
+        <li><router-link class="link" :to="{name: 'LiveStream'}" activeClass="active-link" exactActiveClass="active-link">Live Stream</router-link></li>
+        <li><router-link class="link" :to="{name: 'WatchLive'}" activeClass="active-link" exactActiveClass="active-link">m2M TV</router-link></li>
+      
+      
+        <!--<li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li> -->
         
         <!-- <li v-if="!loggedIn" @click="login"><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
         <li v-else="loogedIn" @click="login"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li> -->
-        <li v-if="isLoggedIn"><router-link class="link" :to="{name: 'LogoutComponent'}">Logout</router-link></li> 
+        <li v-if="isLoggedIn"><router-link class="link" :to="{name: 'LogoutComponent'}" activeClass="active-link" exactActiveClass="active-link">Logout</router-link></li> 
         <!-- <li v-if="isLoggedIn"><button @click="logout">Logout</button></li> -->
-        <li v-else><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
+        <!--<li v-else><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li> -->
         
-    
-        
-        <li><router-link class="link" :to="{name: 'ContactUs'}">Contact</router-link></li>        
+        <!--<li><router-link class="link" :to="{name: 'QrCode'}" activeClass="active-link" exactActiveClass="active-link">QRCode</router-link></li>-->
+        <li><router-link class="link" :to="{name: 'JournalistList'}" activeClass="active-link" exactActiveClass="active-link">Reporters</router-link></li>
+        <li><router-link class="link" :to="{name: 'ContactUsNew'}" activeClass="active-link" exactActiveClass="active-link">Contact</router-link></li>        
     </ul>
     <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class=" {'icon-active' : mobileNav }"></i>
     </div>
     <transition name="mobile-nav">
-        <ul v-show="mobileNav" class="dropdown-nav">
-        <li><router-link class="link" :to="{name: 'Home'}">Home</router-link>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i @click="toggleMobileNav" v-show="mobile" class="fa fa-window-close" :class=" {'icon-active' : mobileNav }"></i></li>
-        <li><router-link class="link" :to="{name: 'Dashboard'}">Dashboard</router-link></li>
+        <ul v-show="mobileNav" class="dropdown-nav" ref="mobileMenu">
+        <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Home</router-link>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i @click="toggleMobileNav" v-show="mobile" class="fa fa-window-close" :class=" {'icon-active' : mobileNav }"></i></li>
+        <li><router-link class="link" :to="{name: 'Dashboard'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">All News</router-link></li>
         <!-- <li><router-link class="link" :to="{name: 'BackgroundImageAdd'}">Ramadan</router-link></li> -->
-        <li><router-link class="link" :to="{name: ''}">Latest News</router-link></li>
+    
+        <li><router-link class="link" :to="{name: 'LiveStream'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Live Stream</router-link></li>
+        <li><router-link class="link" :to="{name: 'WatchLive'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">m2M TV</router-link></li>
         <!-- <li><router-link class="link" :to="{name: 'PrayerTimes'}">Prayer Time</router-link></li> -->
-        <li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li>
-        <li><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li>
-        <li><router-link class="link" :to="{name: 'ContactUs'}">Contact</router-link></li>        
+        <!--<li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li> -->
+       <!-- <li><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li> -->
+        <li><router-link class="link" :to="{name: 'JournalistList'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Reporters</router-link></li>
+        <li><router-link class="link" :to="{name: 'ContactUsNew'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Contact</router-link></li>        
     </ul>
     </transition>
    </nav>
@@ -57,7 +61,7 @@ import LoginForm from './LoginForm.vue';
             return {
                 scrolledNav: null,
                 mobile: null,
-                mobileNav: null,
+                mobileNav: false,
                 windowWidth: null,
                 loggedIn: false,
                 isLoggedIn: false, //Control the authentication status
@@ -75,7 +79,9 @@ import LoginForm from './LoginForm.vue';
         },
         mounted(){
                 window.addEventListener("scroll", this.updateScroll);
+                document.addEventListener("click", this.handleOutsideClick);
             },
+        
 
         computed: {
             isLoggedIn() {
@@ -83,6 +89,7 @@ import LoginForm from './LoginForm.vue';
             }
         },
         methods: {
+
             toggleMobileNav(){
                 this.mobileNav = !this.mobileNav;
             },
@@ -177,6 +184,12 @@ header{
                 font-weight: 700;
                 
             }
+
+            &.active-link{
+                color: #d125ef;
+                border-color: #00afea;
+                font-weight: 700;
+            }
         }
         .branding{
             display: flex;
@@ -229,6 +242,11 @@ header{
                     color: #d125ef;
                     border-color: #00afea;
                     font-weight: 700;
+                    }
+                    &.active-link{
+                        color: #d125ef;
+                        border-color: #00afea;
+                        font-weight: 700;
                     }
                 }
               

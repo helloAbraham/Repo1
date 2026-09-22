@@ -1,5 +1,8 @@
 // BoardMembers.vue
 <template>
+   <div class="home">
+  <h1> Probas Alapon Board Members</h1>
+  <!--
   <div class="board-members">
     <MemberCard
       v-for="member in boardMembers"
@@ -9,6 +12,8 @@
       :imageUrl="member.imageUrl"
     />
   </div>
+-->
+</div>
 </template>
 
 <script>
@@ -40,6 +45,12 @@ export default {
 </script>
 
 <style scoped>
+.home {
+  font-family: "Poppins", sans-serif;
+  background-color: #0f172a; /* deep navy */
+  color: #e5e7eb;
+  padding-top: 175px;
+}
 .board-members {
   display: flex;
   flex-wrap: wrap;

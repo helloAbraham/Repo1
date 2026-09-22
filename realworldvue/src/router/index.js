@@ -26,7 +26,7 @@ const routes = [
   {
     path: "/:pathMatch(.*)",
     name:'bad-not-found',
-    component: NotFound
+    component: NotFound,
   },
 
   {
@@ -108,6 +108,19 @@ const routes = [
   },
 
   {
+    path: "/blogs",
+    name: "BlogPage",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "blogs" */ "../components/BlogPage.vue"
+      ),
+  },
+
+  {
     path: "/contact",
     name: "ContactUs",
     props: true,
@@ -117,6 +130,19 @@ const routes = [
     component: () =>
       import(
         /* webpackChunkName: "contactus" */ "../components/ContactUs.vue"
+      ),
+  },
+
+  {
+    path: "/allContact",
+    name: "AllContactPgn",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "contactus" */ "../components/AllContactPgn.vue"
       ),
   },
 
@@ -329,6 +355,16 @@ const routes = [
 },
 
 {
+  path: "/visitingcard",
+  name: "digitalId",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "imageshow" */ "../components/DigitalId.vue"),
+},
+
+{
   path: "/child",
   name: "ChildComponent",
   // route level code-splitting
@@ -349,6 +385,16 @@ const routes = [
 },
 
 {
+  path: "/myaudio",
+  name: "AudioPlayer",
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () =>
+    import(/* webpackChunkName: "childslot" */ "../views/AudioPlayer.vue"),
+},
+
+{
   path: "/parentscopedslot",
   name: "LibraryScopedSlot",
   // route level code-splitting
@@ -357,6 +403,131 @@ const routes = [
   component: () =>
     import(/* webpackChunkName: "childslot" */ "../components/LibraryScopedSlot"),
 },
+{
+  path: "/dytvta",
+  name: "DownloadFromYouTube",
+  component: () =>
+    import( "../components/DonwloadFromYouTube.vue"), // use the actual filename
+},
+
+{
+  path: "/stopwatch",
+  name: "StopWatch",
+  component: () =>
+    import( "../components/StopWatch.vue"), // use the actual filename
+},
+
+{
+  path: "/game",
+  name: "GamesPage",
+  component: () =>
+    import( "../views/GamesPage.vue"), // use the actual filename
+},
+
+{
+  path: "/speaktext",
+  name: "SpeakText",
+  component: () =>
+    import( "../components/SpeakText.vue"), // use the actual filename
+},
+
+{
+  path: "/fighterjet",
+  name: "FighterJet",
+  component: () =>
+    import( "../components/FighterJet.vue"), // use the actual filename
+},
+
+{
+  path: "/alertpage",
+  name: "PageForAlert",
+  component: () =>
+    import( "../components/PageForAlert.vue"), // use the actual filename
+},
+
+{
+  path: "/editpage",
+  name: "EditableParagraphs",
+  component: () =>
+    import( "../views/EditableParagraphs.vue"), // use the actual filename
+},
+
+{
+  path: "/newsfed",
+  name: "NewsFed",
+  component: () =>
+    import( "../components/NewsFed.vue"), // use the actual filename
+},
+
+{
+  path: "/bricks",
+  name: "BrincksGame",
+  component: () =>
+    import( "../views/BricksGame.vue"), // use the actual filename
+},
+
+{
+  path: "/qrcodegen",
+  name: "QrCode",
+  component: () =>
+    import( "../views/QrCode.vue"), // use the actual filename
+},
+
+{
+  path: "/ballonpop",
+  name: "BalloonPop",
+  component: () =>
+    import( "../components/BalloonPop.vue"), // use the actual filename
+},
+
+{
+  path: "/audiocall",
+  name: "AudioChat",
+  component: () =>
+    import( "../components/AudioChat.vue"), // use the actual filename
+},
+
+{
+  path: "/seform",
+  name: "SeasonEpisode",
+  component: () =>
+    import( "../components/SeasonEpisode.vue"), // use the actual filename
+},
+
+{
+  path: "/jlist",
+  name: "JournalistListPage",
+  component: () =>
+    import( "../components/JournalistListPage.vue"), // use the actual filename
+},
+
+{
+  path: "/tvlist",
+  name: "BanglaTV",
+  component: () =>
+    import( "../components/BanglaTV.vue"), // use the actual filename
+},
+
+{
+  path: "/tvlist",
+  name: "BanglaTV",
+  component: () =>
+    import( "../components/BanglaTV.vue"), // use the actual filename
+},
+
+{
+  path: "/mltv",
+  name: "MoldovaTV",
+  component: () =>
+    import( "../components/MoldovaTV.vue"), // use the actual filename
+},
+
+{
+  path: "/live/:id",
+  name: "LiveFed",
+  component: () => import("@/components/LiveFed.vue")
+},
+
 
 ];
 

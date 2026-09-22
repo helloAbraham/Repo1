@@ -5,6 +5,7 @@ also transition animation inside it-->
   <div class="headerSize">
 
   </div>
+  
   <section class="topPadding">
       <div class="hero-text container">
         <HelloWorld slogan="Islamic Center in Elmhurst" />
@@ -25,6 +26,7 @@ also transition animation inside it-->
       </div>
       
     </section>
+  
   <div class="sizeDown">
 
   </div>

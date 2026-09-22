@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="contact-us">
         <h2>Create Account</h2>
         <!-- we can use either v-if="allErrors.length > 0"-->
         <div  class="box" v-show="allErrors.length > 0">
@@ -7,34 +7,35 @@
                 {{ error }}
             </li>
         </div>
-        <form @submit.prevent="submitButtonPressed" novalidate>
-            <div >Full Name
+        <form @submit.prevent="submitButtonPressed" novalidate class="contact-form">
+            <div class="form-group">Full Name
             <BaseInput 
                 type="text" 
                 v-model="user.name" 
             />
             </div>
-            <div>Email
+            <div class="form-group">Email
             <BaseInput 
                 type="email" 
                 v-model="user.email"
             />
             </div>
-            <div>Password
+            <div class="form-group">Password
             <BaseInput
             type="password" 
             v-model="user.password"
             />
             </div>
         <div>
-            <BaseButton type="submit">SIGN UP</BaseButton>
+            <BaseButtonStyle type="submit">SIGN UP</BaseButtonStyle>
         </div>
         </form>
     </div>
 </template>
 
 <script>
-import BaseButton from '@/components/BaseButton.vue';
+
+import BaseButtonStyle from '@/components/BaseButtonStyle.vue';
 import BaseInput from '@/components/BaseInput.vue';
 
     export default {
@@ -79,21 +80,49 @@ import BaseInput from '@/components/BaseInput.vue';
     },
     components: { 
         BaseInput, 
-        BaseButton 
+        BaseButtonStyle,
     }
 }
 </script>
 
 <style scoped>
+  .contact-us {
+    max-width: 450px;
+    margin: 0 auto;
+    padding-top: 10px;
+    
+  }
 .box {
     background-color: lightgrey;
     width: 435px;
     border: 1px solid green;
-    padding: 10px;
+    padding: 5px;
     margin: 0px;
     color: red;
 }
 .title-position{
     position:inherit;
 }
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group {
+    margin-bottom: 0.5em;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.5em;
+    box-sizing: border-box;
+  }
+  
 </style>

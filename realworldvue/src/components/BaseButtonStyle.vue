@@ -70,6 +70,7 @@ body{
 
 .btn-2 {
   background-image: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+
 }
 
 .btn-3 {

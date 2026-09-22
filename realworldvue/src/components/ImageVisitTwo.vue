@@ -61,10 +61,11 @@ import BaseButtonStyle from './BaseButtonStyle.vue';
   
     methods: {
       // Fetch data from the backend with pagination
+      //For local http://localhost:8082/api/images/listAll
       //https://api.abrahamparker.com/api/images/listAll?page=${page}&size=${this.itemsPerPage}`
       async fetchData(page = 0) {
         try {
-          const response = await fetch(`http://localhost:8082/api/images/listAll?page=${page}&size=${this.itemsPerPage}`); // Replace with your actual endpoint
+          const response = await fetch(`https://api.abrahamparker.com/api/images/listAll?page=${page}&size=${this.itemsPerPage}`); // Replace with your actual endpoint
           const data = await response.json();
           this.tableData = data;  // Update the tableData with paginated response
           this.currentPage = page + 1; // Update the current page (API is 0-indexed, Vue is 1-indexed)

@@ -30,9 +30,9 @@
         cards: Array.from({ length: 13 }, (_, i) => ({
           id: i + 1,
           title: `Card ${i + 1}`,
-          content: `Protest against dictator`,
-          image: `https://ppoba.org/protest_img/protest${i + 1}.png`, // Placeholder image
-          link: `https://ppoba.org/protest_img/protest${i + 1}.png`,
+          content: `Gallery Image ${i + 1}`,
+          image: `https://www.abrahamparker.com/Gallary_Images/gallary${i + 1}.png`, // Placeholder image
+          link: `https://www.abrahamparker.com/Gallary_Images/gallary${i + 1}.png`,
         })),
         currentIndex: 0,
         cardsToShow: 4,

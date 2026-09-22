@@ -1,7 +1,7 @@
 <template>
     <footer>
       <!-- Your footer content goes here -->
-      <p>Copyright&copy; {{ currentYear }} Patriot People of Bangladesh in America, NY</p>
+      <p>Copyright&copy; {{ currentYear }} JFmedia.inc, NY</p>
     </footer>
   </template>
   

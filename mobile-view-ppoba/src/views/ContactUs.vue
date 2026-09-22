@@ -1,4 +1,5 @@
 <template>
+  <!--
     <div class="contact-us">
       <h1>Contact Us</h1>
       <h2>Phone: (718)-450-4150, (718)795-8628</h2>
@@ -22,6 +23,23 @@
         <div class="layout">
 
         </div>
+
+      -->
+      <section class="headerSize">
+      <div >
+        <h1>Contact Us</h1>
+        <h2>Phone: (718)-450-4150 </h2> 
+        </div>
+    </section>
+       <!-- Call to Action -->
+    <section class="cta">
+      <h2>Be a Part of the Conversation</h2>
+      <p>
+        Want to share your story or join the discussion?
+       
+      </p> 
+    
+    </section>            
   </template>
   
   <script>
@@ -69,7 +87,7 @@
   .contact-us {
     max-width: 600px;
     margin: 0 auto;
-    padding-top: 175px;
+    padding-top: 155px;
     
   }
   
@@ -113,7 +131,7 @@
   }
 
   .headerSize {
-  padding-top: 175px;
+  padding-top: 155px;
 }
 .sizeDown {
   margin-top: 625px;
@@ -123,5 +141,143 @@
   position: relative;
   min-height: 100vh;
 }
+.home {
+  font-family: "Poppins", sans-serif;
+  background-color: #0f172a; /* deep navy */
+  color: #e5e7eb;
+  padding-top: 175px;
+}
+
+/* HERO */
+.hero {
+  background: radial-gradient(circle at top, #0dd743, #1e1b4b);
+  text-align: center;
+  padding: 15px 10px;
+  border-top-right-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-bottom-left-radius: 60px;
+  border-top-right-radius: 60px;
+}
+
+.title {
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: #ffffff;
+
+  /* White glow / shadow effect */
+  text-shadow:
+    5px 2px 4px rgba(227, 17, 196, 0.4),
+    0 6px 20px rgba(239, 247, 250, 0.25);
+}
+
+.tagline {
+  font-size: 1.25rem;
+  margin: 20px 0 35px;
+  color: #e0e7ff;
+}
+
+/* BUTTONS */
+.primary-btn {
+  background: #facc15;
+  color: #1e1b4b;
+  padding: 14px 35px;
+  border-radius: 30px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.primary-btn:hover {
+ background: #ff9800;
+  color: #000;
+}
+
+.secondary-btn {
+  background: linear-gradient(135deg, #d70d97, #fc06ec);
+  color: #fff;
+  padding: 14px 35px;
+  border-radius: 30px;
+  font-weight: 600;
+  text-decoration: none;   /* removes underline */
+
+}
+
+/* SECTIONS */
+section {
+  padding: 70px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.about,
+.cta {
+  text-align: center;
+}
+
+.about h2,
+.episodes h2,
+.cta h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #facc15;
+}
+
+.about p,
+.cta p {
+  max-width: 750px;
+  margin: auto;
+  font-size: 1.05rem;
+  color: #c7d2fe;
+}
+
+/* EPISODES */
+.episode-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.episode-card {
+  background: linear-gradient(180deg, #1e293b, #020617);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.episode-card:hover {
+  transform: translateY(-6px) scale(1.02);
+}
+
+.episode-card h3 {
+  color: #a5b4fc;
+  margin-bottom: 12px;
+}
+
+.episode-card p {
+  color: #d1d5db;
+  font-size: 0.95rem;
+}
+
+.date {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 6px 14px;
+  background-color: #7c3aed;
+  color: #fff;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* CTA */
+.cta {
+  background: linear-gradient(135deg, #020617, #1e1b4b);
+  border-radius: 40px;
+  margin: 80px auto;
+  padding: 80px 30px;
+}
+
+
   </style>
   

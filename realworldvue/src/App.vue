@@ -3,10 +3,15 @@
     <div >
     <router-link id="example1" :to="{ name: 'HomePage' }">Home</router-link>  
     <router-link id="example1" :to="{ name: 'About' }">About</router-link>  
-    <router-link id="example1" :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>  
-    <router-link id="example1" :to="{ name: 'ContactUs' }">Contact</router-link>   
+    <router-link id="example1" :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>
+    <router-link id="example1" :to="{ name: 'BanglaTV' }">TV</router-link>  
+    <router-link id="example1" :to="{ name: 'StopWatch' }">Time Countdown</router-link> 
+    <router-link id="example1" :to="{ name: 'GamesPage' }">Game</router-link> 
+     <router-link id="example1" :to="{ name: 'SpeakText' }">TalkingText</router-link>   
+    <router-link id="example1" :to="{ name: 'ContactUs' }">Contact</router-link> 
+       
     <!-- <router-link id="example1" :to="{ name: 'ImageUpload' }">Upload</router-link><br> -->
-    <div class="shadow">_______________________________________</div>
+    <div class="shadow">__________________________________________________________________________________________</div>
   </div>
     <!--
     below are working links

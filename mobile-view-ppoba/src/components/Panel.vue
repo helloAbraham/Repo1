@@ -40,7 +40,8 @@
             return {
                 open: this.startOpen,
             };
-        }
+        },
+        
         
     };
 </script>

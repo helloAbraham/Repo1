@@ -108,7 +108,7 @@
             <br>
             <div class="card">
                 <p><strong> Webster University, St. Louis, MO </strong></p>
-                <p>2024 - Continue...</p>
+                <p>2024 - 2026</p>
                 <p>Cybersecurity Operations (MS)</p>
             </div>
         </div>
