@@ -193,6 +193,15 @@ export default {
           profileUrl: "https://www.facebook.com/arafatTechUSA",
           active: true
         },
+        {
+          id: 15,
+          name: "Mst J Ferdous",
+          role: "Child Rights Journalist",
+          bio: "Covers Social Children's events, child welfare, and government policies children affairs.",
+          image: "https://www.abrahamparker.com/MyUploads/Mst_J_Ferdous_Photo_1.png",
+          profileUrl: "https://www.facebook.com/mst.j.ferdous",
+          active: true
+        }
       
         
       ]

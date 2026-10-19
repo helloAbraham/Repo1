@@ -29,7 +29,8 @@
       <div >
         <h1>Contact Us</h1>
         <h2>Phone: (718)-450-4150 </h2> 
-        </div>
+        
+      </div>
     </section>
        <!-- Call to Action -->
     <section class="cta">

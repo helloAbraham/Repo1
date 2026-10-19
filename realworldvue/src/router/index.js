@@ -528,6 +528,12 @@ const routes = [
   component: () => import("@/components/LiveFed.vue")
 },
 
+{
+  path: "/mp3player",
+  name: "Mp3Player",
+  component: () => import("@/components/Mp3Player.vue")
+}
+
 
 ];
 

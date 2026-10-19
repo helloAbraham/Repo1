@@ -5,9 +5,34 @@
       
     <div class="contact-us">
         <div >
-        <h1>Contact Us</h1>
-        <h2>Phone: (718)-450-4150 </h2> 
-    </div>
+          <h1>Contact Us</h1>
+          
+         <div class="email-container">
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=admin@m2musa.tv"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="email-button"
+            >
+              admin@m2musa.tv
+            </a>
+          <a
+            href="tel:+17184504150"
+            class="email-button"
+            >
+            718-450-4150
+            </a>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=nm2musatv@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="email-button"
+            >
+              m2musatv@gmail.com
+            </a>
+          </div>
+        </div>
+
          <!-- Call to Action -->
     <section class="cta">
       <h2>Be a Part of the Conversation</h2>
@@ -405,5 +430,30 @@ section {
   margin: 10px auto;
   padding: 10px 30px;
 }
-  </style>
+
+.email-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 10px;
+  background: #e42b3b;
+  color: #fff;
+  font-weight: 750;
+  text-decoration: none;
+}
+
+.email-button:hover {
+  background: #c8202f;
+}
+
+.email-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+</style>
   

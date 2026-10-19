@@ -5,21 +5,22 @@ import EventList from '../views/EventList.vue';
 
 
 import store from '@/store';
-import HomePage from '@/views/HomePage.vue';
-import WatchLive from '../components/WatchLive.vue';
+import HomePage from '@/components/HomePage.vue';
+import HomePageNew from '@/components/HomePageNew.vue';
+
 
 const routes = [
   {
     path: '/',
     name: 'Home',
-    component: WatchLive
+    component: HomePageNew
   },
 
     {
     path: '/HomePage',
     name: 'HomePage',
     component: HomePage
-  },
+   },
 
   {
     path:"/404",
@@ -197,6 +198,20 @@ const routes = [
   },
 
   {
+    path: "/latestnewsnew",
+    name: "LatestNewsNew",
+    props: true,
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () =>
+      import(
+        /* webpackChunkName: "dashborad" */ "../views/LatestNewsNew.vue"
+      ),
+      //meta: { requiresAuth: true } 
+  },
+
+  {
     path: "/photoSlide",
     name: "PhotoSlidesShow",
     props: true,
@@ -330,7 +345,7 @@ const routes = [
         props: true,
         component: () =>
           import(
-        /* webpackChunkName: "WatchLive" */ "../components/WatchLive.vue"
+        /* webpackChunkName: "WatchLive" */ "../components/HomePage.vue"
       ),
     },
 
@@ -342,17 +357,84 @@ const routes = [
         import(
           /* webpackChunkName: "JournalistList" */ "../components/JournalistList.vue"
         )
-    }
+    },
 
-      //   {
-      //   path: "/liveFed",
-      //   name: "LiveFed",
-      //   props: true,
-      //   component: () =>
-      //     import(
-      //   /* webpackChunkName: "LiveStream" */ "../components/LiveFed.vue"
-      // ),
-    //},
+    {
+      path: "/pp",
+      name: "PrivacyPolicy",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "PrivacyPolicy" */ "../views/PrivacyPolicy.vue"
+        ),
+    },
+    {
+      path:"/contactabout",
+      name:"ContactPage",
+      props:true,
+      component: () =>
+        import(
+          /* webpackChunkName: "ContactPage" */ "../views/ContactPage.vue"
+        ),
+    },
+
+    {
+      path: "/NewsPage",
+      name: "DashboardNew",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "DashboardNew" */ "../components/DashboardNew.vue"
+        ),
+    },
+
+    {
+      path: "/testingpage",
+      name: "TestingFrontPage",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "TestingFrontPage" */ "../components/TestingFrontPage.vue"
+        ),
+    },
+
+    {
+      path: "/HomePageUpdated",
+      name: "HomePageUpdated",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "HomePageUpdated" */ "../views/HomePageUpdated.vue"
+        ),
+    },
+
+     {
+      path: "/BC",
+      name: "BusinessCard",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard" */ "../views/BusinessCard.vue"
+        ),
+    },
+         {
+      path: "/bc1",
+      name: "BusinessCard_1",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_1" */ "../views/BusinessCard_1.vue"
+        ),
+    },
+    {
+      path: "/bc2",
+      name: "BusinessCard_2",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_2" */ "../views/BusinessCard_2.vue"
+        ),
+    }
 
 ]
 

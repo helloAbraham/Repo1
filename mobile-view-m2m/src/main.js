@@ -10,6 +10,7 @@ import BaseRadio from './components/BaseRadio.vue';
 import BaseCheckBox from './components/BaseCheckBox.vue';
 import BaseButtonStyle from './components/BaseButtonStyle.vue';
 import ButtonLink from './components/ButtonLink.vue';
+import HomePage from './components/HomePage.vue';
 import Vuelidate from 'vuelidate';
 import store from './store'
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -25,6 +26,7 @@ createApp(App)
 .component('BaseSelect', BaseSelect)
 .component('BaseRadio', BaseRadio)
 .component('BaseCheckBox', BaseCheckBox)
+.component('HomePage', HomePage)
 .use(store)
 .use(router)
 .use(Vuelidate)

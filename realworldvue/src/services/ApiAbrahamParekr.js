@@ -11,6 +11,9 @@ const apiMyClient = axios.create({
   },
 });
 
+
+
+
 //let's use intercepters
 //this is the request for server
 apiClient.interceptors.request.use(config => {

@@ -2,7 +2,7 @@
   <nav>
     <div >
     <router-link id="example1" :to="{ name: 'HomePage' }">Home</router-link>  
-    <router-link id="example1" :to="{ name: 'About' }">About</router-link>  
+    <router-link id="example1" :to="{ name: 'Mp3Player' }">Mp3 Player</router-link>  
     <router-link id="example1" :to="{ name: 'CreateAlertSelectVersion' }">Alarm</router-link>
     <router-link id="example1" :to="{ name: 'BanglaTV' }">TV</router-link>  
     <router-link id="example1" :to="{ name: 'StopWatch' }">Time Countdown</router-link> 
@@ -11,7 +11,7 @@
     <router-link id="example1" :to="{ name: 'ContactUs' }">Contact</router-link> 
        
     <!-- <router-link id="example1" :to="{ name: 'ImageUpload' }">Upload</router-link><br> -->
-    <div class="shadow">__________________________________________________________________________________________</div>
+    <div class="shadow">________________________________________________________________________________________________</div>
   </div>
     <!--
     below are working links

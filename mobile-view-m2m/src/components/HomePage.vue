@@ -5,9 +5,11 @@
          HEADER
          ================================================== -->
     <div class="live-header">
+      
 
-      <h1>🔴 Live IPTV Broadcasting</h1>
-
+      <h1>m2M TV USA — Live Bangla News & Television</h1>
+      <p>m2M TV USA brings Bangla news, stories, and television programming  
+        <br>from New York City to audiences across the United States and around the world.</p>
       <div
         class="stream-status"
         :class="{ offline: !streamOnline }"
@@ -40,9 +42,8 @@
         controls
         controlslist="nofullscreen"
         autoplay
-        muted
         playsinline
-
+        webkit-playsinline
         @play="onVideoPlay"
         @playing="streamOnline = true"
         @error="streamOnline = false"
@@ -67,6 +68,19 @@
 
       </div>
 
+        <!-- ==============================================
+            Play button for play with sound 
+          ============================================== -->
+
+          <button
+        v-if="autoplayBlocked && !isMobile"
+        class="live-tv-button"
+        type="button"
+        @click.stop="playLiveTV"
+      >
+        <span class="live-tv-icon">▶</span>
+        <span>Live TV</span>
+      </button>
 
       <!-- ==================================================
            BREAKING NEWS
@@ -146,7 +160,7 @@
       </h2>
 
       <p>
-        A Bais free news broadcasting service from m2M TV usa.
+        A Bias-free news broadcasting service from m2M TV usa.
       </p>
 
     </div>
@@ -196,7 +210,7 @@ import Hls from "hls.js";
 
 export default {
 
-  name: "WatchLive",
+  name: "HomePage",
 
 
   /* ==================================================
@@ -231,6 +245,8 @@ export default {
 
       isIOS: false,
       isIOSFullscreen: false,
+      autoplayBlocked: false,
+      isMobile: false,
     };
 
   },
@@ -250,6 +266,10 @@ export default {
     // Chrome on iOS also uses WebKit
    
   
+    this.isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    if (!this.isMobile) {
+      this.autoplayBlocked = true;
+    }
 
     /* -----------------------------------------------
        DATE / TIME
@@ -434,6 +454,122 @@ this.$nextTick(() => {
 
   methods: {
 
+    /* ===============================================
+       Try AutoPlay with sound
+       =============================================== */
+       async tryAutoplayWithSound() {
+      const video = this.$refs.video;
+
+      if (!video) return;
+
+      video.autoplay = true;
+      video.controls = true;
+
+      // First attempt: autoplay WITH sound
+      video.muted = false;
+      video.defaultMuted = false;
+      video.volume = 1.0;
+
+        try {
+          await video.play();
+
+          console.log("Autoplay with sound succeeded.");
+
+          this.streamOnline = true;
+          this.autoplayBlocked = false;
+
+          return;
+
+        } catch (error) {
+
+    console.warn(
+      "Autoplay with sound was blocked:",
+      error
+    );
+
+    /*
+     * Desktop browsers commonly block autoplay
+     * when audio is enabled.
+     *
+     * Show the Live TV button immediately.
+     */
+    if (!this.isMobile) {
+      this.autoplayBlocked = true;
+    }
+
+    /*
+     * Try muted autoplay.
+     *
+     * This allows the video itself to start even when
+     * autoplay with sound is prohibited.
+     */
+    try {
+
+      video.muted = true;
+      video.defaultMuted = true;
+
+      await video.play();
+
+      console.log(
+        "Muted autoplay started. Waiting for user to enable sound."
+      );
+
+      this.streamOnline = true;
+
+    } catch (mutedError) {
+
+        console.warn(
+          "Muted autoplay was also blocked:",
+          mutedError
+        );
+
+        this.streamOnline = false;
+
+        if (!this.isMobile) {
+          this.autoplayBlocked = true;
+         }
+        }
+      }
+    },
+
+
+
+    async playLiveTV() {
+
+        const video = this.$refs.video;
+
+        if (!video) {
+          console.error("Video element not found.");
+          return;
+        }
+
+      try {
+
+        video.muted = false;
+        video.defaultMuted = false;
+        video.volume = 1.0;
+
+        await video.play();
+
+        console.log("Live TV started with sound.");
+
+        this.streamOnline = true;
+        this.autoplayBlocked = false;
+
+      } catch (error) {
+
+        console.error(
+          "Live TV could not start:",
+          error
+        );
+
+        // Keep the button visible
+        this.autoplayBlocked = true;
+      }
+    },
+
+
+
  // ==========================================
     // STANDARD FULLSCREEN CHANGE
     // Android / Desktop
@@ -464,13 +600,12 @@ this.$nextTick(() => {
     // ==========================================
 
     async toggleFullscreen() {
+      const video = this.$refs.video;
+      const container = this.$refs.videoContainer;
 
-  const video = this.$refs.video;
-  const container = this.$refs.videoContainer;
-
-  if (!video || !container) {
-    return;
-  }
+      if (!video || !container) {
+        return;
+    }
 
   /*
    * ==========================================
@@ -489,22 +624,23 @@ this.$nextTick(() => {
 
   if (this.isIOS) {
 
-    const entering = !this.isIOSFullscreen;
+  const entering = !this.isIOSFullscreen;
 
-    this.isIOSFullscreen = entering;
-    this.isFullscreen = entering;
+  this.isIOSFullscreen = entering;
+  this.isFullscreen = entering;
 
     container.classList.toggle(
       "ios-fullscreen",
       entering
-    );
+      );
 
-    document.body.classList.toggle(
-      "ios-player-fullscreen",
-      entering
-    );
+  document.body.classList.toggle(
+    "ios-player-fullscreen",
+    entering
+     );
 
-    return;
+   return;
+  
   }
 
 
@@ -550,29 +686,29 @@ this.$nextTick(() => {
 
     if (
       container.webkitRequestFullscreen
-    ) {
+        ) {
 
       container.webkitRequestFullscreen();
 
       return;
-    }
+       }
 
 
     console.warn(
       "Fullscreen is not supported on this device."
-    );
+      );
 
-  }
+      }
 
   catch (error) {
 
     console.error(
       "Fullscreen error:",
       error
-    );
+        );
 
-  }
-},
+      }
+    },
 
 
   detectIOS() {
@@ -607,9 +743,10 @@ this.$nextTick(() => {
          */
 
         video.muted = false;
+        video.volume = 1.0;
 
-      }
-    },
+        }
+      },
 
 
     /* ==================================================
@@ -643,7 +780,7 @@ this.$nextTick(() => {
           }
         );
 
-    },
+     },
 
 
     /* ==================================================
@@ -833,36 +970,18 @@ this.$nextTick(() => {
          MANIFEST LOADED
          ----------------------------------------------- */
 
-      this.hls.on(
-        Hls.Events.MANIFEST_PARSED,
-        () => {
+         
+    this.hls.on(Hls.Events.MANIFEST_PARSED, () => {
 
-          console.log(
-            "HLS manifest loaded"
-          );
+          console.log("HLS manifest loaded");
 
           this.streamOnline = true;
 
-          video.muted = false;
-          video.volume = 1.0;
-          video.play();
-          video
-              .play()
-              .then(() => {
+          this.tryAutoplayWithSound();
 
-              this.streamOnline = true;
+      });
 
-              })
-            .catch((error) => {
-
-          console.warn(
-                "Autoplay with sound was prevented:",
-            error
-            );
-
-          });
-        }
-      );
+      
 
 
       /* -----------------------------------------------
@@ -1147,7 +1266,9 @@ this.$nextTick(() => {
         fullscreenElement ===
         container;
 
-    },
+        },
+
+
   }
 
   };
@@ -1365,7 +1486,7 @@ this.$nextTick(() => {
 .time-text {
   margin-top: 3px;
 
-  font-size: clamp(18px, 2.8vw, 32px);
+  font-size: clamp(13px, 1.8vw, 21px);
 
   font-weight: 800;
 
@@ -1879,7 +2000,7 @@ this.$nextTick(() => {
   }
 
   .time-text {
-    font-size: 16px;
+    font-size: 11px;
   }
 
 
@@ -1965,7 +2086,7 @@ this.$nextTick(() => {
   }
 
   .time-text {
-    font-size: 13px;
+    font-size: 9px;
   }
 
   .breaking-news-overlay {
@@ -2089,6 +2210,231 @@ this.$nextTick(() => {
 .ios-fullscreen .fullscreen-button {
   z-index: 1000003 !important;
 }
+
+/* ==================================================
+   CENTER LIVE TV BUTTON
+   ================================================== */
+
+.live-tv-button {
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  width: 125px;
+  height: 44px;
+
+  padding: 0;
+
+  background: rgba(210, 0, 0, 0.95);
+
+  color: #ffffff;
+
+  border: 1px solid rgba(255, 255, 255, 0.9);
+
+  border-radius: 7px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  pointer-events: auto;
+
+  box-shadow:
+    0 0 10px rgba(60, 160, 218, 0.75),
+    0 0 20px rgba(0, 162, 255, 0.35);
+
+  backdrop-filter: blur(4px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+
+  touch-action: manipulation;
+
+  user-select: none;
+  -webkit-user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+
+/* ==================================================
+   HOVER
+   ================================================== */
+
+.live-tv-button:hover {
+  background: #ff0000;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1.05);
+
+  box-shadow:
+    0 0 14px rgba(12, 12, 230, 0.9),
+    0 0 28px rgba(9, 31, 230, 0.5);
+}
+
+
+/* ==================================================
+   CLICK
+   ================================================== */
+
+.live-tv-button:active {
+  transform:
+    translate(-50%, -50%)
+    scale(0.96);
+}
+
+
+/* ==================================================
+   PLAY ICON
+   ================================================== */
+
+.live-tv-icon {
+  font-size: 16px;
+
+  line-height: 1;
+}
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+/* ==================================================
+   MOBILE EMBEDDED PLAYER
+   ================================================== */
+
+@media (max-width: 768px) {
+
+  .video-container {
+    position: relative;
+
+    width: 100%;
+    height: auto;
+
+    aspect-ratio: 16 / 9;
+
+    max-width: 100%;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 7px;
+  }
+
+  .video-player {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+  }
+
+  /* Hide desktop Live TV button on mobile */
+  .live-tv-button {
+    display: none !important;
+  }
+
+
+  /* ==================================================
+     iOS CUSTOM FULLSCREEN
+     ================================================== */
+
+  .video-container.ios-fullscreen {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    aspect-ratio: auto !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    background: #000000 !important;
+
+    z-index: 999999 !important;
+
+    overflow: hidden !important;
+  }
+
+  .video-container.ios-fullscreen .video-player {
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: contain !important;
+  }
+
+  .video-container.ios-fullscreen .channel-logo {
+    z-index: 1000000 !important;
+  }
+
+  .video-container.ios-fullscreen .datetime-overlay {
+    z-index: 1000001 !important;
+
+    bottom: 70px !important;
+  }
+
+  .video-container.ios-fullscreen .breaking-news-overlay {
+    z-index: 1000002 !important;
+
+    bottom: 15px !important;
+  }
+
+  .video-container.ios-fullscreen .fullscreen-button {
+    z-index: 1000003 !important;
+
+    display: flex !important;
+  }
+
+}
+
+
+/* ==================================================
+   VERY SMALL MOBILE
+   ================================================== */
+
+@media (max-width: 480px) {
+
+  .video-container {
+    width: 100%;
+
+    aspect-ratio: 16 / 9;
+
+    height: auto;
+  }
+
+  .video-container.ios-fullscreen {
+    width: 100vw !important;
+    height: 100dvh !important;
+
+    aspect-ratio: auto !important;
+  }
+
+}
+
 
 
 

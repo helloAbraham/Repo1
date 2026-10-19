@@ -55,7 +55,7 @@
 
 <script>
 export default {
-  name: "HomePage",
+  name: "HomePageOld",
   data() {
     return {
       episodes: [

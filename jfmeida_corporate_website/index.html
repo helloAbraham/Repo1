@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="JFMEDIA.INFO.CORP — corporate home for M2M TV USA and Probash Alapon.">
+  <meta name="theme-color" content="#101b35">
+  <title>JFMEDIA.INFO CORP | Corporate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <style>
+    :root{--navy:#101b35;--navy2:#17294c;--blue:#4268f5;--cyan:#70d6df;--ink:#17213a;--muted:#65718a;--paper:#f6f8fc;--line:#e3e8f2;--white:#fff}
+    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:"DM Sans",sans-serif;color:var(--ink);background:var(--white);line-height:1.6}
+    a{color:inherit;text-decoration:none} button{font:inherit}.wrap{width:min(1160px,calc(100% - 44px));margin:auto}
+    header{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(227,232,242,.85)}
+    .nav{height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.brand{display:flex;align-items:center;gap:12px;font-family:Manrope,sans-serif;font-weight:800;letter-spacing:-.04em;font-size:21px}
+    .brandmark {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  display: block;
+}
+    .brand small{display:block;font:600 9px "DM Sans",sans-serif;letter-spacing:.2em;color:var(--muted);margin-top:-3px}
+    .navlinks{display:flex;align-items:center;gap:29px;color:#485570;font-size:13px;font-weight:700}.navlinks a:hover{color:var(--blue)}
+    .navcta{padding:11px 17px;border-radius:10px;background:var(--navy);color:white!important}
+    .menu-toggle{display:none;border:1px solid var(--line);background:white;border-radius:10px;padding:8px 12px;color:var(--ink)}
+    .hero{overflow:hidden;position:relative;background:var(--navy);color:white;padding:100px 0 92px}
+    .hero:before{content:"";position:absolute;width:650px;height:650px;border-radius:50%;right:-120px;top:-250px;background:radial-gradient(circle,#4268f54d 0,transparent 68%);pointer-events:none}
+    .hero:after{content:"";position:absolute;width:430px;height:430px;border:1px solid #ffffff14;border-radius:50%;right:6%;top:16%;box-shadow:0 0 0 50px #ffffff08,0 0 0 100px #ffffff05;pointer-events:none}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.15fr .85fr;gap:70px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:#a9bcff;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:800}
+    .eyebrow:before{content:"";width:24px;height:2px;background:var(--cyan)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Manrope,sans-serif;line-height:1.12;letter-spacing:-.045em}
+    h1{font-size:clamp(42px,5.3vw,70px);margin:24px 0 23px;max-width:700px}h1 span{color:var(--cyan)}
+    .hero-copy{font-size:17px;color:#c2cce0;max-width:565px;line-height:1.8;margin-bottom:30px}
+    .actions{display:flex;gap:13px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:11px;padding:14px 19px;font-weight:700;font-size:13px;transition:.2s}
+    .btn-primary{background:var(--blue);color:white;box-shadow:0 10px 24px #4268f533}.btn-primary:hover{transform:translateY(-2px);background:#5577ff}
+    .btn-ghost{border:1px solid #ffffff35;color:white}.btn-ghost:hover{background:#ffffff12}
+    .hero-panel{position:relative;padding:28px;border:1px solid #ffffff24;border-radius:23px;background:linear-gradient(145deg,#ffffff13,#ffffff06);backdrop-filter:blur(8px)}
+    .panel-top{display:flex;align-items:center;justify-content:space-between;padding-bottom:22px;border-bottom:1px solid #ffffff20;color:#b9c6e0;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+    .live-dot{height:8px;width:8px;background:var(--cyan);border-radius:50%;box-shadow:0 0 0 5px #70d6df1a}
+    .orbit{height:220px;display:grid;place-items:center;position:relative}.orbit-ring{width:138px;height:138px;border:1px solid #8fa6ff66;border-radius:50%;display:grid;place-items:center;box-shadow:0 0 0 20px #8fa6ff0c,0 0 0 42px #8fa6ff08}
+    .orbit-core{height:78px;width:78px;border-radius:23px;display:grid;place-items:center;background:linear-gradient(145deg,#4268f5,#7590ff);font:800 22px Manrope;box-shadow:0 12px 35px #0003}.orbit-core img{width:78px;height:78px;object-fit:contain;border-radius:23px}
+    .orbit-node{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#24385d;border:1px solid #8fa6ff66;border-radius:10px;padding:8px 11px;font-size:10px;font-weight:700;color:#e5ebff}
+    .node-a{transform:translate(-50%,-50%) translate(0,-94px)}.node-b{transform:translate(-50%,-50%) translate(89px,-29px)}.node-c{transform:translate(-50%,-50%) translate(55px,76px)}.node-d{transform:translate(-50%,-50%) translate(-55px,76px)}.node-e{transform:translate(-50%,-50%) translate(-89px,-29px)}
+    .panel-foot{display:flex;justify-content:space-between;gap:14px;color:#aab7d0;font-size:11px}.panel-foot strong{display:block;color:white;font-size:15px;letter-spacing:-.02em}
+    .trustbar{background:white;border-bottom:1px solid var(--line)}.trust-items{display:grid;grid-template-columns:repeat(3,1fr);padding:23px 0;gap:20px}
+    .trust-item{display:flex;align-items:center;justify-content:center;gap:12px;color:#5b6780;font-size:12px;font-weight:700}.trust-icon{display:grid;place-items:center;height:34px;width:34px;border-radius:10px;background:#eef2ff;color:var(--blue);font-size:15px}
+    section{scroll-margin-top:90px}.section{padding:92px 0}.section-soft{background:var(--paper)}
+    .section-head{max-width:660px;margin-bottom:42px}.section-head .eyebrow{color:var(--blue)}.section-head h2{font-size:clamp(31px,3.5vw,45px);margin:17px 0}
+    .section-head p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:0}
+    .about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+    .about-card{padding:28px;border-radius:20px;background:var(--navy);color:white;position:relative;overflow:hidden;min-height:265px}
+    .about-card:after{content:"J";position:absolute;font:800 220px Manrope;color:#ffffff09;right:8px;bottom:-90px}
+    .about-card .mini-label{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#aabaff;font-weight:800}.about-card h3{font-size:29px;margin:25px 0 13px}.about-card p{color:#c1cbe0;font-size:13px;max-width:290px}
+    .about-text h3{font-size:25px;margin:3px 0 17px}.about-text p{font-size:14px;color:var(--muted);line-height:1.9}
+    .principles{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:25px}.principle{padding:16px;border:1px solid var(--line);border-radius:13px}.principle strong{display:block;font-size:13px;margin-bottom:5px}.principle span{font-size:12px;color:var(--muted)}
+    .company-details{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+    .company-details>div{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}
+    .company-details span{display:block;color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:800;margin-bottom:6px}
+    .company-details strong{font-size:12px;line-height:1.6;display:block;overflow-wrap:anywhere}
+    .company-details a{color:var(--blue)}
+    .business-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+    .business-card{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:20px;background-color:rgb(234, 22, 216);background-position:center;background-size:cover;padding:30px;transition:transform .35s,box-shadow .25s}
+    .business-card:hover{transform:translateY(-5px);box-shadow:0 18px 65px #1a2b5010}
+    .business-card:before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--blue),var(--cyan))}
+    .card-icon{height:52px;width:52px;border-radius:15px;background:#eef2ff;color:var(--blue);display:grid;place-items:center;font-size:22px;margin-bottom:25px}
+    .business-card h3{font-size:24px;margin-bottom:9px}.domain{font-size:12px;color:var(--blue);font-weight:700;letter-spacing:.02em}
+    .business-card p{font-size:13px;color:#303b50;line-height:1.8;margin:17px 0 22px}
+    .card-link{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:800;color:var(--navy)}.card-link span{transition:transform .2s}.card-link:hover span{transform:translateX(4px)}
+    .note{margin-top:20px;color:#7a8498;font-size:11px}
+    .contact{background:var(--navy);color:white;padding:76px 0}.contact-grid{display:flex;align-items:center;justify-content:space-between;gap:35px}.contact h2{font-size:clamp(30px,3.5vw,43px);margin:15px 0}.contact p{color:#bdc8df;max-width:570px;font-size:14px;margin-bottom:0}.contact .eyebrow{color:#a9bcff}
+    footer{background:#0b1429;color:#aab5cb;padding:23px 0;font-size:11px}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer-brand{font-family:Manrope;font-weight:800;color:white;letter-spacing:.03em}.footer-links{display:flex;gap:20px;flex-wrap:wrap}.footer-links a:hover{color:white}
+    .modal-backdrop{position:fixed;inset:0;background:#081126a8;z-index:50;display:grid;place-items:center;padding:20px}.modal{background:white;border-radius:18px;padding:28px;width:min(520px,100%);box-shadow:0 25px 90px #0004}.modal h3{font-size:25px}.modal p{color:var(--muted);font-size:13px}.modal label{display:block;font-size:12px;font-weight:700;margin:14px 0 6px}.modal input,.modal textarea{width:100%;border:1px solid var(--line);border-radius:9px;padding:11px;font:inherit;font-size:13px}.modal textarea{min-height:100px;resize:vertical}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.modal .close{background:white;color:var(--ink);border:1px solid var(--line)}
+    @media(max-width:800px){.hero{padding:74px 0}.hero-grid,.about-grid{grid-template-columns:1fr;gap:38px}.hero-panel{max-width:520px}.navlinks{gap:17px}.about-grid{gap:25px}.contact-grid{align-items:flex-start;flex-direction:column}}
+    @media(max-width:620px){.company-details{grid-template-columns:1fr}.wrap{width:min(100% - 32px,1160px)}.nav{height:68px}.menu-toggle{display:block}.navlinks{display:none;position:absolute;top:68px;left:0;right:0;background:white;border-bottom:1px solid var(--line);padding:18px 22px 22px;align-items:stretch;flex-direction:column;gap:17px}.navlinks.open{display:flex}.navcta{text-align:center}.hero{padding:62px 0}.hero-copy{font-size:15px}.hero-panel{padding:20px}.trust-items{grid-template-columns:1fr;gap:13px;padding:20px 0}.trust-item{justify-content:flex-start}.section{padding:68px 0}.business-grid{grid-template-columns:1fr}.business-card{padding:25px}.principles{grid-template-columns:1fr}.footer-row{align-items:flex-start;flex-direction:column}.contact{padding:62px 0}}
+  </style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="JFMEIDA.INFO home">
+        <img class="brandmark" src="assets/logo.png" alt="">
+  <span>JFMEDIA.INFO<small>CORPORATE OVERVIEW</small></span>
+    </a>  
+      <button class="menu-toggle" @click="menuOpen = !menuOpen" :aria-expanded="menuOpen" aria-label="Toggle navigation">☰</button>
+      <nav class="navlinks" :class="{open: menuOpen}" aria-label="Main navigation">
+        <a href="#about" @click="menuOpen=false">About</a>
+        <a href="#businesses" @click="menuOpen=false">Our Businesses</a>
+        <a href="#contact" @click="menuOpen=false">Contact</a>
+        <a class="navcta" href="#businesses" @click="menuOpen=false">Explore our platforms ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">A connected digital portfolio</div>
+          <h1>Ideas, media, Technology, Security &amp; communities <span>moving forward.</span></h1>
+          <p class="hero-copy">Welcome to JFMEIDA.INFO — a corporate home for a growing portfolio of digital platforms, media experiences, and community connections.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#businesses">Explore our businesses <span>↗</span></a>
+            <a class="btn btn-ghost" href="#about">About the corporation</a>
+          </div>
+        </div>
+        <div class="hero-panel" aria-label="Corporate portfolio illustration">
+          <div class="panel-top"><span>Our portfolio</span><span class="live-dot"></span></div>
+          <div class="orbit">
+            <span class="orbit-node node-a">MEDIA</span>
+            <span class="orbit-node node-b">DIGITAL</span>
+            <span class="orbit-node node-c">COMMUNITY</span>  
+            <span class="orbit-node node-d">TECHNOLOGY</span>
+            <span class="orbit-node node-e">SECURITY</span>
+            <div class="orbit-ring"><div class="orbit-core"><img src="assets/logo.png" alt=""></div></div>
+          </div>
+          <div class="panel-foot"><div><strong>One vision</strong>Connected platforms</div><div><strong>Multiple voices</strong>Distinct experiences</div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trustbar">
+      <div class="wrap trust-items">
+        <div class="trust-item"><span class="trust-icon">✦</span> Purpose-led digital experiences</div>
+        <div class="trust-item"><span class="trust-icon">◎</span> Media and community platforms</div>
+        <div class="trust-item"><span class="trust-icon">↗</span> A connected brand portfolio</div>
+      </div>
+    </div>
+
+    <section class="section" id="about">
+      <div class="wrap about-grid">
+        <div>
+          <div class="section-head">
+            <div class="eyebrow">Who we are</div>
+            <h2>A corporate home for connected ideas.</h2>
+            <p>JFMEDIA.INFO CORP brings the portfolio into one clear, professional online destination.</p>
+          </div>
+          <div class="about-card">
+            <div class="mini-label">Our direction</div>
+            <h3>Build. Connect.<br>Move forward.</h3>
+            <p>A shared corporate presence, with each platform serving its own audience and purpose.</p>
+          </div>
+        </div>
+        <div class="about-text">
+          <h3>About JFMEIDA.INFO</h3>
+          <p>JFMEDIA.INFO CORP is the parent company behind M2M TV USA and Probash Alapon. This corporate website brings both company-owned platforms together under one clear online destination, while each platform maintains its own identity and audience.</p>
+          <div class="company-details" aria-label="Corporate information">
+            <div><span>Legal company name</span><strong>JFMEDIA.INFO.CORP</strong></div>
+            <div><span>Business address</span><strong>37-14 73rd St #204<br>Jackson Heights, NY 11372</strong></div>
+            <div><span>Official contact</span><strong><a href="mailto:admin@jfmedia.info">admin@jfmedia.info</a></strong></div>
+            <div><span>Portfolio structure</span><strong>Parent company with two owned platforms</strong></div>
+          </div>
+          <div class="principles">
+            <div class="principle"><strong>Clear identity</strong><span>A consistent corporate presence.</span></div>
+            <div class="principle"><strong>Distinct brands</strong><span>Independent platforms and audiences.</span></div>
+            <div class="principle"><strong>Easy access</strong><span>Direct links to each website.</span></div>
+            <div class="principle"><strong>Room to grow</strong><span>Designed for future portfolio updates.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="businesses">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Our businesses</div>
+          <h2>Explore the portfolio.</h2>
+          <p>JFMEDIA.INFO CORP owns both platforms. Visit each official website to learn more about its content, services, and community.</p>
+        </div>
+        <div class="business-grid">
+          <article class="business-card" v-for="business in businesses" :key="business.domain" :style="{ backgroundImage: 'linear-gradient(rgba(255,255,255,.72), rgba(255,255,255,.80)), url(' + business.background + ')' }">
+            <div class="card-icon" aria-hidden="true">{{ business.icon }}</div>
+            <h3>{{ business.name }}</h3>
+            <div class="domain">{{ business.domain }}</div>
+            <p>{{ business.description }}</p>
+            <a class="card-link" :href="business.url" target="_blank" rel="noopener noreferrer">Visit website <span>↗</span></a>
+          </article>
+        </div>
+        <p class="note">The two platforms are presented as owned by JFMEDIA.INFO.CORP, based on the company details supplied.</p>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <div class="eyebrow">Connect with us</div>
+          <h2>Let's start a conversation.</h2>
+          <p>For corporate inquiries, partnerships, or general information, email admin@jfmedia.info or write to 37-14 73rd St #204, Jackson Heights, NY 11372.</p>
+        </div>
+        <a class="btn btn-primary" href="mailto:admin@jfmedia.info">Email the corporation <span>↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><span class="footer-brand">JFMEDIA.INFO CORP</span><span> &nbsp; © {{ currentYear }}. All rights reserved.</span></div>
+      <div class="footer-links">
+        <a href="#about">About</a><a href="#businesses">Our Businesses</a>
+        <a href="https://m2musa.tv" target="_blank" rel="noopener noreferrer">m2M TV USA</a>
+        <a href="https://probasalapon.com" target="_blank" rel="noopener noreferrer">Probash Alapon</a>
+      </div>
+    </div>
+  </footer>
+
+  <div v-if="contactOpen" class="modal-backdrop" @click.self="contactOpen=false">
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+      <h3 id="contact-title">Corporate inquiry</h3>
+      <p>This demo form does not send messages. Add your official business email or connect a form service before publishing.</p>
+      <label for="sender-name">Your name</label><input id="sender-name" v-model="contact.name" placeholder="Full name">
+      <label for="sender-email">Email address</label><input id="sender-email" type="email" v-model="contact.email" placeholder="you@example.com">
+      <label for="sender-message">Message</label><textarea id="sender-message" v-model="contact.message" placeholder="How can we help?"></textarea>
+      <div class="modal-actions"><button class="btn close" @click="contactOpen=false">Close</button><button class="btn btn-primary" @click="copyInquiry">Copy inquiry text</button></div>
+      <p v-if="copyMessage" role="status" style="margin:12px 0 0;color:#4268f5">{{ copyMessage }}</p>
+    </section>
+  </div>
+</div>
+
+<script>
+const { createApp } = Vue;
+
+createApp({
+  // Vue 3 Options API
+  data() {
+    return {
+      menuOpen: false,
+      contactOpen: false,
+      copyMessage: '',
+      contact: { name: '', email: '', message: '' },
+      businesses: [
+        {
+          name: 'm2M TV USA',
+          domain: 'm2musa.tv',
+          url: 'https://m2musa.tv',
+          background: 'assets/m2m_thumbnails_logo.jpeg',
+          icon: '▶',
+          description: 'A media platform in the portfolio. Visit the official website for current programming, services, and company information.'
+        },
+        {
+          name: 'Probash Alapon',
+          domain: 'probasalapon.com',
+          url: 'https://probasalapon.com',
+          background: 'assets/probasalapon_flag.jpg',
+          icon: '▶',
+          description: 'A separate digital destination within the portfolio. Explore its official website for current content and audience offerings.'
+        },
+
+          {
+          name: 'IT Services',
+          domain: 'jfmedia.info',
+          url: 'https://jfmedia.info',
+          background: 'assets/IT_services_Banner.png',
+          icon: '◎',
+          description: 'A separate digital destination within the portfolio. Explore its official website for current content and audience offerings.'
+        }
+      ]
+    };
+  },
+  computed: {
+    currentYear() {
+      return new Date().getFullYear();
+    }
+  },
+  methods: {
+    async copyInquiry() {
+      const text = [
+        'Corporate inquiry — JFMEIDA.INFO',
+        `Name: ${this.contact.name || '(not provided)'}`,
+        `Email: ${this.contact.email || '(not provided)'}`,
+        `Message: ${this.contact.message || '(not provided)'}`
+      ].join('\n');
+      try {
+        await navigator.clipboard.writeText(text);
+        this.copyMessage = 'Inquiry text copied. You can paste it into your email.';
+      } catch (error) {
+        this.copyMessage = 'Clipboard access is unavailable. Please copy your details manually.';
+      }
+    }
+  }
+}).mount('#app');
+</script>
+</body>
+</html>

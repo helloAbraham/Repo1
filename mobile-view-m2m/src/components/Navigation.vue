@@ -9,7 +9,8 @@
         <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link">Home</router-link></li>
         <li><router-link class="link" :to="{name: 'Dashboard'}" activeClass="active-link" exactActiveClass="active-link">All News</router-link></li>
         <li><router-link class="link" :to="{name: 'LatestNews'}" activeClass="active-link" exactActiveClass="active-link">Latest News</router-link></li>
-        <li><router-link class="link" :to="{name: 'WatchLive'}" activeClass="active-link" exactActiveClass="active-link">Live TV</router-link></li>
+        <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link">Live TV</router-link></li>
+        <li><router-link class="link" :to="{name: 'JournalistList'}" activeClass="active-link" exactActiveClass="active-link">Reporters</router-link></li>
       
       
         <!--<li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li> -->
@@ -21,8 +22,7 @@
         <!--<li v-else><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li> -->
         
         <!--<li><router-link class="link" :to="{name: 'QrCode'}" activeClass="active-link" exactActiveClass="active-link">QRCode</router-link></li>-->
-        <li><router-link class="link" :to="{name: 'JournalistList'}" activeClass="active-link" exactActiveClass="active-link">Reporters</router-link></li>
-        <li><router-link class="link" :to="{name: 'ContactUsNew'}" activeClass="active-link" exactActiveClass="active-link">Contact</router-link></li>        
+        <li><router-link class="link" :to="{name: 'ContactPage'}" activeClass="active-link" exactActiveClass="active-link">Contact / About</router-link></li>        
     </ul>
     <div class="icon">
         <i @click="toggleMobileNav" v-show="mobile" class="far fa-bars" :class=" {'icon-active' : mobileNav }"></i>
@@ -31,14 +31,10 @@
         <ul v-show="mobileNav" class="dropdown-nav" ref="mobileMenu">
         <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Home</router-link>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<i @click="toggleMobileNav" v-show="mobile" class="fa fa-window-close" :class=" {'icon-active' : mobileNav }"></i></li>
         <li><router-link class="link" :to="{name: 'Dashboard'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">All News</router-link></li>
-        <!-- <li><router-link class="link" :to="{name: 'BackgroundImageAdd'}">Ramadan</router-link></li> -->
-    
-        <li><router-link class="link" :to="{name: 'WatchLive'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Live TV</router-link></li>
-        <!-- <li><router-link class="link" :to="{name: 'PrayerTimes'}">Prayer Time</router-link></li> -->
-        <!--<li><router-link class="link" :to="{name: 'BoardMembers'}">About Us</router-link></li> -->
-       <!-- <li><router-link class="link" :to="{name: 'LoginForm'}">Login</router-link></li> -->
+        <li><router-link class="link" :to="{name: 'LatestNews'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Latest News</router-link></li>
+        <li><router-link class="link" :to="{name: 'Home'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Live TV</router-link></li>
         <li><router-link class="link" :to="{name: 'JournalistList'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Reporters</router-link></li>
-        <li><router-link class="link" :to="{name: 'ContactUsNew'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Contact</router-link></li>        
+        <li><router-link class="link" :to="{name: 'ContactPage'}" activeClass="active-link" exactActiveClass="active-link" @click="mobileNav = false">Contact /About</router-link></li>        
     </ul>
     </transition>
    </nav>
