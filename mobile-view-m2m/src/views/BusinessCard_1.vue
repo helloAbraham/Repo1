@@ -49,8 +49,8 @@
         >
           <span>↗</span> m2musa.tv
         </a> -->
-         <h1 class="name-heading">{{name}}</h1>
-        <p class="job-title">{{designation}}</p>
+         <h1 class="name-heading">Abraham Parker</h1>
+        <p class="job-title">CEO, m2M TV</p>
       </div>
 
       <!-- Contact details -->
@@ -120,10 +120,10 @@ export default {
   data() {
     return {
     website: 'https://m2musa.tv/#/bc1', // Replace with dynamcic value if needed instance https://m2musa.tv/#/BC1, https://m2musa.tv/#/BC2
-    phone: '5616984447',
+    phone: '7184504150',
     qrCode: '',
-    name: 'Ferdusur Rony',
-    designation: 'Operations Manager, m2M TV',
+    name: 'Abraham Parker',
+    designation: 'CEO, m2M TV',
     officeLocation: '37-14 73rd St #204, Jackson Heights, NY 11372',
     }
   },
@@ -153,11 +153,11 @@ export default {
   const vCard = [
     'BEGIN:VCARD',
     'VERSION:3.0',
-    'N:Rony;Ferdusur;;;',
-    'FN:Ferdusur Rony',
+    'N:Parker;Abraham;;;',
+    'FN:Abraham Parker',
     'ORG:m2M TV USA',
-    'TITLE:Operations Manager',
-    'TEL;TYPE=WORK,VOICE:+15616984447',
+    'TITLE:CEO',
+    'TEL;TYPE=WORK,VOICE:+17184504150',
     'ADR;TYPE=WORK:;;37-14 73rd St #204;Jackson Heights;NY;11372;USA',
     'URL:https://m2musa.tv/#/bc1',
     'END:VCARD'
@@ -172,7 +172,7 @@ export default {
   const link = document.createElement('a')
 
   link.href = url
-  link.download = 'Ferdusur-Rony-m2M-TV.vcf'
+  link.download = 'Abraham-Parker-m2M-TV.vcf'
 
   document.body.appendChild(link)
   link.click()

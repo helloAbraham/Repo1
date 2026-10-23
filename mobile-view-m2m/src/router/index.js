@@ -358,6 +358,15 @@ const routes = [
           /* webpackChunkName: "JournalistList" */ "../components/JournalistList.vue"
         )
     },
+    {
+      path: "/journalist/:id",
+      name: "JournalistIndividual",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "JournalistIndividual" */ "../components/JournalistIndividual.vue"
+        )
+    },
 
     {
       path: "/pp",
@@ -409,15 +418,6 @@ const routes = [
     },
 
      {
-      path: "/BC",
-      name: "BusinessCard",
-      props: true,
-      component: () =>
-        import(
-          /* webpackChunkName: "BusinessCard" */ "../views/BusinessCard.vue"
-        ),
-    },
-         {
       path: "/bc1",
       name: "BusinessCard_1",
       props: true,
@@ -426,7 +426,7 @@ const routes = [
           /* webpackChunkName: "BusinessCard_1" */ "../views/BusinessCard_1.vue"
         ),
     },
-    {
+         {
       path: "/bc2",
       name: "BusinessCard_2",
       props: true,
@@ -434,7 +434,141 @@ const routes = [
         import(
           /* webpackChunkName: "BusinessCard_2" */ "../views/BusinessCard_2.vue"
         ),
-    }
+    },
+    {
+      path: "/bc3",
+      name: "BusinessCard_3",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_3" */ "../views/BusinessCard_3.vue"
+        ),
+    },
+    {
+      path: "/bc4",
+      name: "BusinessCard_4",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_4" */ "../views/BusinessCard_4.vue"
+        ),
+    },
+    {
+      path: "/bc5",
+      name: "BusinessCard_5",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_5" */ "../views/BusinessCard_5.vue"
+        ),  
+    },
+    {
+      path: "/bc6",
+      name: "BusinessCard_6",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_6" */ "../views/BusinessCard_6.vue"
+        ),
+    },
+
+    {
+      path: "/bc7",
+      name: "BusinessCard_7",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_7" */ "../views/BusinessCard_7.vue"
+        ),
+    },
+
+    {
+      path: "/bc8",
+      name: "BusinessCard_8",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_8" */ "../views/BusinessCard_8.vue"
+        ),
+    },
+
+    {
+      path: "/bc9",
+      name: "BusinessCard_9",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_9" */ "../views/BusinessCard_9.vue"
+        ),
+    },
+
+    {
+      path: "/bc10",
+      name: "BusinessCard_10",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_10" */ "../views/BusinessCard_10.vue"
+        ),    
+    },
+
+    {
+      path: "/bc11",
+      name: "BusinessCard_11",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_11" */ "../views/BusinessCard_11.vue"
+        ),    
+    },
+
+    {
+      path: "/bc12",
+      name: "BusinessCard_12",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_12" */ "../views/BusinessCard_12.vue"
+        ),    
+    },
+    {
+      path: "/bc13",
+      name: "BusinessCard_13",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_13" */ "../views/BusinessCard_13.vue"
+        ),
+    },
+    {
+      path: "/bc14",
+      name: "BusinessCard_14",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_14" */ "../views/BusinessCard_14.vue"
+        ),
+    },
+
+    {
+      path: "/bc15",
+      name: "BusinessCard_15",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_15" */ "../views/BusinessCard_15.vue"
+        ),
+    },
+
+    {
+      path: "/bc16",
+      name: "BusinessCard_16",
+      props: true,
+      component: () =>
+        import(
+          /* webpackChunkName: "BusinessCard_16" */ "../views/BusinessCard_16.vue"
+        ),    
+    } 
 
 ]
 
